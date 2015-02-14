@@ -7,5 +7,9 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class EvidenceStoredModel
     {
+        public string EvidenceStored { get; set; }
+
+        public SmartModel Smart { get; set; }
+
     }
 }

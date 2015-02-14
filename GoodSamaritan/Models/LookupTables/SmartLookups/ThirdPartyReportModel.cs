@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class ThirdPartyReportModel
     {
+        public string ThirdPartyReport { get; set; }
+
+        public SmartModel Smart { get; set; }
     }
 }

@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class PoliceReportedModel
     {
+        public string PolicReported { get; set; }
+
+        public SmartModel Smart { get; set; }
     }
 }

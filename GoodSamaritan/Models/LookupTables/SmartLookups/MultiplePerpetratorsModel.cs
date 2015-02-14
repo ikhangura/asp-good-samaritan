@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class MultiplePerpetratorsModel
     {
+        public string MultiplePerpetrators { get; set; }
+
+        public SmartModel Smart { get; set; }
     }
 }

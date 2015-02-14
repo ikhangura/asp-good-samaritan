@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class DrugFacilitatedAssaultModel
     {
+        public string DrugFacilitatedAssault { get; set; }
+
+        public SmartModel Smart { get; set; }
     }
 }
