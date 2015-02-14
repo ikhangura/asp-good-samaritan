@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using GoodSamaritan.Models.LookupTables;
 
 namespace GoodSamaritan.Models
 {
     public class SmartModel
     {
-        [ForeignKey('ClientModel')]
+        [ForeignKey("ClientModel")]
         public int ClientReferenceNumber { get; set; }
 
-        public List<Work_EploitationModel> WorkExploitation { get; set; }
+        public List<Work_ExploitationModel> WorkExploitation { get; set; }
 
         public List<MultiplePerpetratorsModel> MultiplePerpetrators { get; set; }
 
-        public List<DrugFaciliatedAssaultModel> DrugFaciliatedAssault { get; set; }
+        public List<DrugFacilitatedAssaultModel> DrugFaciliatedAssault { get; set; }
 
         public List<CityOfAssaultModel> CityOfAssault { get; set; }
 
-        public List<CityOFResidenceModel> CityOfResidence { get; set; }
+        public List<CityOfResidenceModel> CityOfResidence { get; set; }
 
         public int AccompanimentMinutes { get; set; }
 
@@ -33,7 +34,7 @@ namespace GoodSamaritan.Models
 
         public List<VictimServicesModel> VictimServices { get; set; }
 
-        public List<MdeicalOnlyModel> MedicalOnly { get; set; }
+        public List<MedicalOnlyModel> MedicalOnly { get; set; }
 
         public List<EvidenceStoredModel> EvidenceStored { get; set; }
 
