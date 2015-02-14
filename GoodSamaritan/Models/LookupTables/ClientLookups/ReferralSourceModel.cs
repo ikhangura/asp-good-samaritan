@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class ReferralSourceModel
     {
+        public string ReferralSource { get; set; }
+
+        public ClientModel Client { get; set; }
     }
 }

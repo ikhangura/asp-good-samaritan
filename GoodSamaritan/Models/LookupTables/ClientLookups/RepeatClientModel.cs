@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class RepeatClientModel
     {
+        public string RepeatClient { get; set; }
+
+        public ClientModel Client { get; set; }
     }
 }

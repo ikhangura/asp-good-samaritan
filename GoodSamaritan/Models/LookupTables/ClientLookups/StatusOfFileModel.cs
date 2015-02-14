@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class StatusOfFileModel
     {
+        public string StatusOfFile { get; set; }
+
+        public ClientModel Client { get; set; }
     }
 }

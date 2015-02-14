@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class FiscalYearModel
     {
+        public string FiscalYear { get; set; }
+
+        public ClientModel Client { get; set; }
     }
 }

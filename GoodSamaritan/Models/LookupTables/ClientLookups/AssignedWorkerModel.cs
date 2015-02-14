@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class AssignedWorkerModel
     {
+        public string AssignedWorker { get; set; }
+
+        public ClientModel Client { get; set; }
     }
 }

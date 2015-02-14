@@ -7,5 +7,8 @@ namespace GoodSamaritan.Models.LookupTables
 {
     public class RiskLevelModel
     {
+        public string RiskLevel { get; set; }
+
+        public ClientModel Client { get; set; }
     }
 }
