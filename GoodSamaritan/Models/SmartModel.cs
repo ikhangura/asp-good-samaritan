@@ -4,13 +4,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using GoodSamaritan.Models.LookupTables;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoodSamaritan.Models
 {
     public class SmartModel
     {
+        [Key]
         [ForeignKey("ClientModel")]
         public int ClientReferenceNumber { get; set; }
+
+        public ClientModel ClientModel { get; set; }
 
         public List<Work_ExploitationModel> WorkExploitation { get; set; }
 

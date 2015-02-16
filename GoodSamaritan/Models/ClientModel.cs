@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using GoodSamaritan.Models.LookupTables;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoodSamaritan.Models
 {
     public class ClientModel
     {
+        [Key]
         public int ClientReferenceNumber { get; set; }
 
         public List<FiscalYearModel> FiscalYear { get; set; }
