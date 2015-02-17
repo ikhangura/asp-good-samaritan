@@ -12,7 +12,9 @@ namespace GoodSamaritan.Models
         [Key]
         public int ClientReferenceNumber { get; set; }
 
-        public List<FiscalYearModel> FiscalYear { get; set; }
+        public SmartModel SmartModel { get; set; }
+
+        public FiscalYearModel FiscalYear { get; set; }
 
         public int Month { get; set; }
 
@@ -28,43 +30,43 @@ namespace GoodSamaritan.Models
 
         public int SWCFileNumber { get; set; }
 
-        public List<RiskLevelModel> RiskLevel { get; set; }
+        public RiskLevelModel RiskLevel { get; set; }
 
-        public List<CrisisModel> Crisis { get; set; }
+        public CrisisModel Crisis { get; set; }
 
-        public List<ServiceModel> Service { get; set; }
+        public ServiceModel Service { get; set; }
 
-        public List<ProgramModel> Program { get; set; }
+        public ProgramModel Program { get; set; }
 
         public string RiskAssessmentAssignedTo { get; set; }
 
-        public List<RiskStatusModel> RiskStatus { get; set; }
+        public RiskStatusModel RiskStatus { get; set; }
 
-        public List<AssignedWorkerModel> AssignedWorker { get; set; }
+        public AssignedWorkerModel AssignedWorker { get; set; }
 
-        public List<ReferralSourceModel> ReferralSource { get; set; }
+        public ReferralSourceModel ReferralSource { get; set; }
 
-        public List<ReferralContactModel> ReferralContact { get; set; }
+        public ReferralContactModel ReferralContact { get; set; }
 
-        public List<IncidentModel> Incident { get; set; }
+        public IncidentModel Incident { get; set; }
 
         public string AbuserName { get; set; }
 
-        public List<AbuserRelationshipModel> AbuserRelationship { get; set; }
+        public AbuserRelationshipModel AbuserRelationship { get; set; }
 
-        public List<VictimOfIncidentModel> VictimOfIncident { get; set; }
+        public VictimOfIncidentModel VictimOfIncident { get; set; }
 
-        public List<FamilyViolenceModel> FamilyViolenceFile { get; set; }
+        public FamilyViolenceModel FamilyViolenceFile { get; set; }
 
         public char Gender { get; set; }
 
-        public List<EthnicityModel> Ethnicity { get; set; }
+        public EthnicityModel Ethnicity { get; set; }
 
-        public List<AgeModel> Age { get; set; }
+        public AgeModel Age { get; set; }
 
-        public List<RepeatClientModel> RepeatClient { get; set; }
+        public RepeatClientModel RepeatClient { get; set; }
 
-        public List<DuplicateFileModel> DuplicateFile { get; set; }
+        public DuplicateFileModel DuplicateFile { get; set; }
 
         public int NumChildren0_6 { get; set; }
 
@@ -72,7 +74,7 @@ namespace GoodSamaritan.Models
 
         public int NumChildren13_18 { get; set; }
 
-        public List<StatusOfFileModel> StatusOfFile { get; set; }
+        public StatusOfFileModel StatusOfFile { get; set; }
 
         public DateTime DateLastTransferred { get; set; }
 

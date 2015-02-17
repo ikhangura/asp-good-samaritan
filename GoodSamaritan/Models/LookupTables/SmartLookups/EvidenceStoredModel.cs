@@ -11,7 +11,7 @@ namespace GoodSamaritan.Models.LookupTables
         [Key]
         public string EvidenceStored { get; set; }
 
-        public SmartModel Smart { get; set; }
+        public List<SmartModel> Smart { get; set; }
 
     }
 }

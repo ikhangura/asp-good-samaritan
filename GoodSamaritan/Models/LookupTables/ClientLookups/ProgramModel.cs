@@ -11,6 +11,7 @@ namespace GoodSamaritan.Models.LookupTables
         [Key]
         public string Program { get; set; }
 
-        public ClientModel Client { get; set; }
+        public List<ClientModel> Client { get; set; }
+
     }
 }
