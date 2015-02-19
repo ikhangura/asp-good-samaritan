@@ -4,6 +4,7 @@ namespace GoodSamaritan.Models
     using System.Data.Entity;
     using System.Linq;
     using GoodSamaritan.Models.LookupTables;
+using Microsoft.AspNet.Identity.EntityFramework;
 
     public class GoodSamaritanModel : DbContext
     {

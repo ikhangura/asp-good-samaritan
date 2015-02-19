@@ -6,6 +6,8 @@ namespace GoodSamaritan.Migrations.GoodSamaritanMigrations
     using System.Linq;
     using GoodSamaritan.Models;
     using GoodSamaritan.Models.LookupTables;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<GoodSamaritan.Models.GoodSamaritanModel>
     {
@@ -30,12 +32,8 @@ namespace GoodSamaritan.Migrations.GoodSamaritanMigrations
             //    );
             //
 
-            context.UserModel.AddOrUpdate(
-                um => um.Email,
-                new UserModel { Email = "adam@gs.ca", Password = "P@$$w0rd", Role = "Adminstrator" },
-                new UserModel { Email = "wendy@gs.ca", Password = " P@$$w0rd", Role = "Worker" },
-                new UserModel { Email = "rob@gs.ca", Password = "P@$$w0rd", Role = "Report" }
-            );
+            
+           
 
             context.FiscalYearModel.AddOrUpdate(
                 fym => fym.FiscalYear,
