@@ -9,6 +9,7 @@ namespace GoodSamaritan.Models.LookupTables
     public class RiskLevelModel
     {
         [Key]
+        public int RiskLevelId { get; set; }
         public string RiskLevel { get; set; }
 
         public List<ClientModel> Client { get; set; }

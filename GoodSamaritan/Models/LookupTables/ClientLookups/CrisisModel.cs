@@ -9,6 +9,7 @@ namespace GoodSamaritan.Models.LookupTables
     public class CrisisModel
     {
         [Key]
+        public int CrisisId { get; set; }
         public string Crisis { get; set; }
 
         public List<ClientModel> Client { get; set; }

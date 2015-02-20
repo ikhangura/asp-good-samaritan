@@ -9,6 +9,7 @@ namespace GoodSamaritan.Models.LookupTables
     public class AbuserRelationshipModel
     {
         [Key]
+        public int AbuserRelationShipId { get; set; }
         public string AbuserRelationship { get; set; }
 
         public List<ClientModel> Client { get; set; }

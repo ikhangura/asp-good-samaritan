@@ -9,6 +9,7 @@ namespace GoodSamaritan.Models.LookupTables
     public class ThirdPartyReportModel
     {
         [Key]
+        public int ThirdPartyReportID { get; set; }
         public string ThirdPartyReport { get; set; }
 
         public List<SmartModel> Smart { get; set; }

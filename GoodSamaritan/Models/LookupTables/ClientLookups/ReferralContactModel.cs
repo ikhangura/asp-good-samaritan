@@ -9,6 +9,7 @@ namespace GoodSamaritan.Models.LookupTables
     public class ReferralContactModel
     {
         [Key]
+        public int ReferralContactId { get; set; }
         public string ReferralContact { get; set; }
 
         public List<ClientModel> Client { get; set; }

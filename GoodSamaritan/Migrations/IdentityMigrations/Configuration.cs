@@ -77,15 +77,15 @@ using System.Linq;
 
                 context.SaveChanges();*/
             
-            var adam = new ApplicationUser() { UserName = "adam@gs.ca"};
+            var adam = new ApplicationUser() { UserName = "adam@gs.ca",  Email = "adam@gs.ca"};
             var user = userManager.Create(adam, "P@$$w0rd");
             userManager.AddToRole(adam.Id, "Administrator");
 
-            var wendy = new ApplicationUser() { UserName = "wendy@gs.ca"};
+            var wendy = new ApplicationUser() { UserName = "wendy@gs.ca", Email = "wendy.gs.ca"};
             var user2 = userManager.Create(wendy, "P@$$w0rd");
             userManager.AddToRole(wendy.Id, "Worker");
 
-            var rob = new ApplicationUser() { UserName = "rob@gs.ca" };
+            var rob = new ApplicationUser() { UserName = "rob@gs.ca" , Email = "rob@gs.ca" };
             var user3 = userManager.Create(rob, "P@$$w0rd");
             userManager.AddToRole(rob.Id, "Report");
         }

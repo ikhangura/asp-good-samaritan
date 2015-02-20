@@ -161,19 +161,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientModelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\GoodSamaritanMigrations\201502182104358_InitialCreate.cs" />
-    <Compile Include="Migrations\GoodSamaritanMigrations\201502182104358_InitialCreate.Designer.cs">
-      <DependentUpon>201502182104358_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\GoodSamaritanMigrations\201502200624158_Initial4.cs" />
+    <Compile Include="Migrations\GoodSamaritanMigrations\201502200624158_Initial4.Designer.cs">
+      <DependentUpon>201502200624158_Initial4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\GoodSamaritanMigrations\Configuration.cs" />
-    <Compile Include="Migrations\IdentityMigrations\201502190024082_InitialCreate.cs" />
-    <Compile Include="Migrations\IdentityMigrations\201502190024082_InitialCreate.Designer.cs">
-      <DependentUpon>201502190024082_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\IdentityMigrations\201502200412313_Initial2.cs" />
+    <Compile Include="Migrations\IdentityMigrations\201502200412313_Initial2.Designer.cs">
+      <DependentUpon>201502200412313_Initial2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\IdentityMigrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -217,11 +218,14 @@
     <Compile Include="Models\LookupTables\SmartLookups\Work_ExploitationModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SmartModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-GoodSamaritan-20150211045615.mdf" />
+    <Content Include="App_Data\aspnet-GoodSamaritan-20150211045615_log.ldf">
+      <DependentUpon>aspnet-GoodSamaritan-20150211045615.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -278,10 +282,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ClientModels\Create.cshtml" />
+    <Content Include="Views\ClientModels\Delete.cshtml" />
+    <Content Include="Views\ClientModels\Details.cshtml" />
+    <Content Include="Views\ClientModels\Edit.cshtml" />
+    <Content Include="Views\ClientModels\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -290,11 +297,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\GoodSamaritanMigrations\201502182104358_InitialCreate.resx">
-      <DependentUpon>201502182104358_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\GoodSamaritanMigrations\201502200624158_Initial4.resx">
+      <DependentUpon>201502200624158_Initial4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\IdentityMigrations\201502190024082_InitialCreate.resx">
-      <DependentUpon>201502190024082_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\IdentityMigrations\201502200412313_Initial2.resx">
+      <DependentUpon>201502200412313_Initial2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

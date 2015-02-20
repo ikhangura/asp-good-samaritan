@@ -9,6 +9,7 @@ namespace GoodSamaritan.Models.LookupTables
     public class EvidenceStoredModel
     {
         [Key]
+        public int EvidenceStoredId { get; set; }
         public string EvidenceStored { get; set; }
 
         public List<SmartModel> Smart { get; set; }

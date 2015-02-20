@@ -3,7 +3,7 @@ namespace GoodSamaritan.Migrations.IdentityMigrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial2 : DbMigration
     {
         public override void Up()
         {

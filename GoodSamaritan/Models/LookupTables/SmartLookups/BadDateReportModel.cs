@@ -9,6 +9,7 @@ namespace GoodSamaritan.Models.LookupTables
     public class BadDateReportModel
     {
         [Key]
+        public int BadDateReportId { get; set; }
         public string BadDateReport { get; set; }
 
         public List<SmartModel> Smart { get; set; }

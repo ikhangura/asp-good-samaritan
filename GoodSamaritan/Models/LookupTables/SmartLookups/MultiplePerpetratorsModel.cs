@@ -9,6 +9,7 @@ namespace GoodSamaritan.Models.LookupTables
     public class MultiplePerpetratorsModel
     {
         [Key]
+        public int MultiplePerpetratorsID { get; set; }
         public string MultiplePerpetrators { get; set; }
 
         public List<SmartModel> Smart { get; set; }
