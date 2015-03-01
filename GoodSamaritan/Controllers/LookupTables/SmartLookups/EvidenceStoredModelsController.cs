@@ -12,6 +12,7 @@ using GoodSamaritan.Models.LookupTables;
 
 namespace GoodSamaritan.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class EvidenceStoredModelsController : Controller
     {
         private GoodSamaritanModel db = new GoodSamaritanModel();
