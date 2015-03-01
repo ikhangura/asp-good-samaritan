@@ -22,3 +22,22 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* dropdown datalist css */
+ul.nav > LI {
+    list-style: none;
+    float: left;
+
+    position: relative;
+    height: 24px; /* height included for IE 7 */
+}
+
+ul.nav UL{
+    left: -10000px;
+    position: absolute;            
+}
+
+ul.nav > LI:hover UL{
+    left: 0;
+    top: 50px; /* IE7 has problems without this */
+}

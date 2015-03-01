@@ -26,6 +26,53 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @{ if (User.IsInRole("Administrator"))
+                     {
+                        <li>
+                            <a>Lookup Tables</a>
+                            <ul style="width: 200px;background: #772953">
+                                <li>@Html.ActionLink("Abuser Relationship", "Index", "AbuserRelationshipModels")</li>
+                                <li>@Html.ActionLink("Age", "Index", "AgeModels")</li>
+                                <li>@Html.ActionLink("Assigned Worker", "Index", "AssignedWorkersModels")</li>
+                                <li>@Html.ActionLink("Crisis ", "Index", "CrisisModel")</li>
+                                <li>@Html.ActionLink("Duplicate File", "Index", "DuplicateFileModels")</li>
+                                <li>@Html.ActionLink("Ethnicity", "Index", "EthnicityModels")</li>
+                                <li>@Html.ActionLink("Family Violence", "Index", "FamilyViolenceModels")</li>
+                                <li>@Html.ActionLink("Fiscal Year", "Index", "FiscalYearModels")</li>
+                                <li>@Html.ActionLink("Incident", "Index", "IncidentModels")</li>
+                                <li>@Html.ActionLink("Program", "Index", "ProgramModels")</li>
+                                <li>@Html.ActionLink("Referral Contact", "Index", "ReferralContactModels")</li>
+                                <li>@Html.ActionLink("Referral Source", "Index", "ReferralSourceModels")</li>
+                                <li>@Html.ActionLink("Repeat Client", "Index", "RepeatClientModels")</li>
+                                <li>@Html.ActionLink("Risk Level", "Index", "RiskLevelModels")</li>
+                                <li>@Html.ActionLink("Risk Status", "Index", "RiskStatusModels")</li>
+                                <li>@Html.ActionLink("Service", "Index", "ServiceModels")</li>
+                                <li>@Html.ActionLink("Status of File", "Index", "StatusOfFileModels")</li>
+                                <li>@Html.ActionLink("Victim of Incident", "Index", "VictimOFIncidentModels")</li>
+
+
+                                <li>@Html.ActionLink("Bad Date Report", "Index", "BadDateReportModels")</li>
+                                <li>@Html.ActionLink("City Of Assault", "Index", "CityOfAssaultModels")</li>
+                                <li>@Html.ActionLink("City Of Residence", "Index", "CityOfResidenceModels")</li>
+                                <li>@Html.ActionLink("Drug Facilitated Assault", "Index", "DrugFacilitatedAssaultModels")</li>
+                                <li>@Html.ActionLink("Evidence Stored", "Index", "EvidenceStoredModels")</li>
+                                <li>@Html.ActionLink("HIV Meds", "Index", "HIVMedsModels")</li>
+                                <li>@Html.ActionLink("Hospital Attended", "Index", "HospitalAttendedModels")</li>
+                                <li>@Html.ActionLink("Medical Only", "Index", "MedicalOnlyModels")</li>
+                                <li>@Html.ActionLink("Multiple Perpetrators", "Index", "MultiplePerpetratorsModels")</li>
+                                <li>@Html.ActionLink("Police Attendance", "Index", "PoliceAttendanceModels")</li>
+                                <li>@Html.ActionLink("Police Reported", "Index", "PoliceReportedModels")</li>
+                                <li>@Html.ActionLink("Referral Hospital", "Index", "ReferralHospitalModels")</li>
+                                <li>@Html.ActionLink("Referral CBVS", "Index", "ReferralCBVSModels")</li>
+                                <li>@Html.ActionLink("Social Work Attendance", "Index", "SocialWorkAttendanceModels")</li>
+                                <li>@Html.ActionLink("Third Party Report", "Index", "ThirdPartyReportModels")</li>
+                                <li>@Html.ActionLink("Victim Services", "Index", "VictimServicesModels")</li>
+                                <li>@Html.ActionLink("Work Exploitation", "Index", "Work_ExploitationModels")</li>
+                            </ul>
+                        </li>
+                     }
+                    }
+                        
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -38,6 +85,18 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+
+    <script>
+    function goToNewPage(dropdownlist) {
+        var url = dropdownlist.options(dropdownlist.selectedIndex).value;
+        if (url != "") {
+            window.open(url);
+        }
+    }
+    </script>
+
+
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
