@@ -1,0 +1,27 @@
+﻿@model GoodSamaritan.Models.LookupTables.VictimServicesModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VictimServicesModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VictimServices)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VictimServices)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VictimServicesID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

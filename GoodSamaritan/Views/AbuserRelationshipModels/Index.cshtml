@@ -1,0 +1,34 @@
+﻿@model IEnumerable<GoodSamaritan.Models.LookupTables.AbuserRelationshipModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AbuserRelationship)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbuserRelationship)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AbuserRelationShipId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AbuserRelationShipId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AbuserRelationShipId })
+        </td>
+    </tr>
+}
+
+</table>

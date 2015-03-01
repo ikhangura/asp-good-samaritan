@@ -1,0 +1,27 @@
+﻿@model GoodSamaritan.Models.LookupTables.SocialWorkAttendanceModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SocialWorkAttendanceModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SocialWorkAttendance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SocialWorkAttendance)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SocalWorkAttendanceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

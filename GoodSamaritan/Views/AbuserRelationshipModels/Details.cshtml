@@ -1,0 +1,27 @@
+﻿@model GoodSamaritan.Models.LookupTables.AbuserRelationshipModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AbuserRelationshipModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AbuserRelationship)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AbuserRelationship)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AbuserRelationShipId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

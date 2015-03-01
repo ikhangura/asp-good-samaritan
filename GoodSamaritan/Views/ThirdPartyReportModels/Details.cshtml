@@ -1,0 +1,27 @@
+﻿@model GoodSamaritan.Models.LookupTables.ThirdPartyReportModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ThirdPartyReportModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdPartyReport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThirdPartyReport)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ThirdPartyReportID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
