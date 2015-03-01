@@ -16,7 +16,7 @@ namespace GoodSamaritan.Migrations.GoodSamaritanMigrations
             AutomaticMigrationsEnabled = false;
             MigrationsDirectory = @"Migrations\GoodSamaritanMigrations";
 
-            Database.SetInitializer(new DropCreateDatabaseAlways<GoodSamaritanModel>()); // always drops and recreates database
+            //Database.SetInitializer(new DropCreateDatabaseAlways<GoodSamaritanModel>()); // always drops and recreates database
         }
 
         protected override void Seed(GoodSamaritan.Models.GoodSamaritanModel context)
@@ -37,7 +37,7 @@ namespace GoodSamaritan.Migrations.GoodSamaritanMigrations
             
            
 
-            context.FiscalYearModel.AddOrUpdate(
+           context.FiscalYearModel.AddOrUpdate(
                 fym => fym.FiscalYear,
                 new FiscalYearModel { FiscalYear = "10-11" },
                 new FiscalYearModel { FiscalYear = "11-12" },
@@ -47,7 +47,7 @@ namespace GoodSamaritan.Migrations.GoodSamaritanMigrations
                 new FiscalYearModel { FiscalYear = "15-16" },
                 new FiscalYearModel { FiscalYear = "16-17" }
             );
-
+           
             context.RiskLevelModel.AddOrUpdate(
                 rlm => rlm.RiskLevel,
                 new RiskLevelModel { RiskLevel = "High" },
@@ -392,7 +392,7 @@ namespace GoodSamaritan.Migrations.GoodSamaritanMigrations
                 new BadDateReportModel { BadDateReport = "N/A" }
             );
 
-
+            context.SaveChanges();
         
         
         }

@@ -89,5 +89,6 @@ using System.Linq;
             var user3 = userManager.Create(rob, "P@$$w0rd");
             userManager.AddToRole(rob.Id, "Report");
         }
+       
     }
 }

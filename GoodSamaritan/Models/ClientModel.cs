@@ -20,18 +20,25 @@ namespace GoodSamaritan.Models
         public int FiscalYearId { get; set; }
         public FiscalYearModel FiscalYear { get; set; }
 
+        [Range(0, 12, ErrorMessage = "valid month is between 1 to 12")]
         public int Month { get; set; }
 
+        [Range(0, 31, ErrorMessage = "Valid days are between 1 to 31")]
         public int Day { get; set; }
 
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Invalid Last Name")]
         public string Surname { get; set; }
 
+         [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Invalid First Name")]
         public string FirstName { get; set; }
 
+         [RegularExpression("^([0-9]{2}-[0-9]{5})$", ErrorMessage = "Format is 99-99999")]
         public string PoliceFileNumber { get; set; }
 
+        [Range(1,int.MaxValue, ErrorMessage = "Value should be greater than 1")]
         public int CourtFileNumber { get; set; }
 
+         [Range(0, int.MaxValue, ErrorMessage = "valid value is be zero or greater")]
         public int SWCFileNumber { get; set; }
 
         [ForeignKey("RiskLevel")]
@@ -50,6 +57,7 @@ namespace GoodSamaritan.Models
         public int ProgramId { get; set; }
         public ProgramModel Program { get; set; }
 
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "It should be some title\name")]
         public string RiskAssessmentAssignedTo { get; set; }
 
         [ForeignKey("RiskStatus")]
@@ -72,6 +80,7 @@ namespace GoodSamaritan.Models
         public int IncidentId { get; set; }
         public IncidentModel Incident { get; set; }
 
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Not a valid name")]
         public string AbuserName { get; set; }
 
         [ForeignKey("AbuserRelationship")]
@@ -104,20 +113,26 @@ namespace GoodSamaritan.Models
         public int DuplicateFileId { get; set; }
         public DuplicateFileModel DuplicateFile { get; set; }
 
+          [Range(0, int.MaxValue, ErrorMessage = "Inter positive number please")]
         public int NumChildren0_6 { get; set; }
 
+          [Range(0, int.MaxValue, ErrorMessage = "Inter positive number please")]
         public int NumChildren7_12 { get; set; }
 
+          [Range(0, int.MaxValue, ErrorMessage = "Inter positive number please")]
         public int NumChildren13_18 { get; set; }
 
         [ForeignKey("StatusOfFile")]
         public int StatusOfFileId { get; set; }
         public StatusOfFileModel StatusOfFile { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime DateLastTransferred { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime DateClosed { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime DateReOpened { get; set; }
     }
 }

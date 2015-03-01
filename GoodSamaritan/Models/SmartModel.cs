@@ -33,6 +33,7 @@ namespace GoodSamaritan.Models
         public int CityOfResidenceId { get; set; }
         public CityOfResidenceModel CityOfResidence { get; set; }
 
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int AccompanimentMinutes { get; set; }
 
         [ForeignKey("ReferralHospital")]
@@ -83,6 +84,7 @@ namespace GoodSamaritan.Models
         public int BadDateReportId { get; set; }
         public BadDateReportModel BadDateReport { get; set; }
 
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int NumberTransportsProvided { get; set; }
 
         public bool ReferredToNursePractitioner { get; set; }
