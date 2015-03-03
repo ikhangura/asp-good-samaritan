@@ -41,3 +41,5 @@ ul.nav > LI:hover UL{
     left: 0;
     top: 50px; /* IE7 has problems without this */
 }
+
+#topNav ul li ul { max-height:150px; overflow:auto; }
