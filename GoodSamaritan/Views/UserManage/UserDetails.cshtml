@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+@Html.ActionLink("Back", "Index", "UserManage")
+
+<h3>@ViewBag.User</h3>
+
+<h3>Roles Enrolled Currently</h3>
+@if (ViewBag.message != null)
+{
+    <h4>@ViewBag.message</h4>
+}
+
+<table class="table">
+    
+    @{
+        List<String> userRoles = ViewBag.RolesId;
+        List<String> userRolesNames = ViewBag.RolesNames;
+        List<String> allRoles = ViewBag.AllRoles;
+        List<String> allRolesIds = ViewBag.AllRolesIds;
+    }
+
+    @for(int i = 0; i < userRoles.Count(); i++)
+    {
+        <tr>
+            <td>@userRolesNames.ElementAt(i)</td>
+            <td>@Html.ActionLink("Remove From Role", "RemoveFromRole", new {id = ViewBag.UserId, role = userRoles.ElementAt(i)})</td>
+        </tr>
+    }
+    
+</table>
+
+<h3> Add @ViewBag.User to Roles:</h3>
+@if (ViewBag.AddRoleMessage != null)
+{
+    <h4 style="color: red">ViewBag.AddRoleMessage</h4>
+}
+
+@using (Html.BeginForm("AddToRole", "UserManage", "POST"))
+{
+    <fieldset>
+        @Html.Hidden("userid", (string)ViewBag.UserId)
+        
+        @for (int i = 0; i < allRoles.Count; i++)
+        {
+            if (!userRoles.Contains(allRolesIds[i]))
+            {
+                <p>@allRoles[i] @Html.CheckBox(allRoles[i]) </p><br />
+            }
+
+        }
+        <p><input type="submit" value="Save" /></p>
+    </fieldset>
+}
+

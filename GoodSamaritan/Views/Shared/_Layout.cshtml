@@ -30,6 +30,9 @@
                         @{ if (User.IsInRole("Administrator"))
                          {
                             <li>
+                                @Html.ActionLink("User/Roles Management", "Index", "UserManage")
+                            </li>
+                            <li>
 
                                 <a>Lookup Tables</a>
                                 <ul style="width: 200px;background: #772953;list-style-type:none;border-bottom-left-radius: 10px;">

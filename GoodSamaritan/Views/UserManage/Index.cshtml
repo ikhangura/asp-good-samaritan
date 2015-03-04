@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+@if (ViewBag.RemoveUserMessage != null)
+{
+    <p>@ViewBag.RemoveUserMessage</p>
+}
+<table class="table">
+    @{
+        List<String> users = ViewBag.Users;
+        List<String> roles = ViewBag.Roles;
+        List<String> ids = ViewBag.Id;
+        List<String> roleids = ViewBag.RoleIds;
+    }
+   
+    @for (int i = 0; i < users.Count; i++ )
+    {
+        
+        <tr>
+            <td>
+                @users.ElementAt(i)
+            </td>
+            <td>
+                @Html.ActionLink("Edit Roles", "UserDetails", new { id =  ids.ElementAt(i)})
+            </td>
+            <td>
+                @Html.ActionLink("Suspend/UnSuspend", "ToggleSuspend", new { id = ids.ElementAt(i) })
+            </td>
+            <td>
+                @Html.ActionLink("Remove", "RemoveUser", new { id = ids.ElementAt(i) })
+            </td>
+
+        </tr>
+    }
+</table>
+
+<h2>Roles</h2>
+@Html.ActionLink("Create Role", "CreateRole", "UserManage")
+<table class="table">
+    @for (int i = 0 ; i < roles.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(roles.ElementAt(i), "RoleDetails", new { id = roles.ElementAt(i) })
+            </td>
+            <td>
+                @if(!roles.ElementAt(i).Equals("Administrator")){
+                    @Html.ActionLink("Remove", "RemoveRole", new { id = roles.ElementAt(i) })
+                }
+            </td>
+            <td>
+                @if (!roles.ElementAt(i).Equals("Administrator"))
+                {
+                    @Html.ActionLink("Edit", "EditRole", new { id =  roleids.ElementAt(i)})
+                }
+            </td>
+        </tr>
+    }
+</table>
+

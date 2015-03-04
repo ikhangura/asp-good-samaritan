@@ -200,6 +200,7 @@
     <Compile Include="Controllers\LookupTables\SmartLookups\ThirdPartyReportModelsController.cs" />
     <Compile Include="Controllers\LookupTables\SmartLookups\VictimServicesModelsController.cs" />
     <Compile Include="Controllers\LookupTables\SmartLookups\Work_ExploitationModelController.cs" />
+    <Compile Include="Controllers\UserManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -503,6 +504,10 @@
     <Content Include="Views\Work_ExploitationModel\Details.cshtml" />
     <Content Include="Views\Work_ExploitationModel\Edit.cshtml" />
     <Content Include="Views\Work_ExploitationModel\Index.cshtml" />
+    <Content Include="Views\UserManage\Index.cshtml" />
+    <Content Include="Views\UserManage\UserDetails.cshtml" />
+    <Content Include="Views\UserManage\CreateRole.cshtml" />
+    <Content Include="Views\UserManage\EditRole.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

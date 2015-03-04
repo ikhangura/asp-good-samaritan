@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "CreateRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Role</h2>
+@Html.ActionLink("Back", "Index", "UserManage")
+@if (ViewBag.CreateRoleMessage != null)
+{
+    <p>@ViewBag.CreateRoleMessage</p>
+}
+
+@using (Html.BeginForm("Create", "UserManage", "POST"))
+{
+    <fieldset>
+        @Html.TextBox("rolename", "Role Name")
+        <p><input type="submit" value="Save" /></p>
+    </fieldset>
+}
+

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "EditRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditRole</h2>
+
+@Html.ActionLink("Back", "Index", "UserManage")
+@if (ViewBag.EditRoleMessage != null)
+{
+    <p>@ViewBag.EditRoleMessage</p>
+}
+
+@using (Html.BeginForm("EditRole", "UserManage", "POST"))
+{
+    <fieldset>
+        @Html.Hidden("oldroleid", (string)ViewBag.RoleId)
+        @Html.TextBox("rolename", (string)ViewBag.RoleName)
+        <p><input type="submit" value="Save" /></p>
+    </fieldset>
+}
