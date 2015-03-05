@@ -29,10 +29,10 @@ namespace GoodSamaritan.Models
         [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Invalid Last Name")]
         public string Surname { get; set; }
 
-         [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Invalid First Name")]
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Invalid First Name")]
         public string FirstName { get; set; }
 
-         [RegularExpression("^([0-9]{2}-[0-9]{5})$", ErrorMessage = "Format is 99-99999")]
+        [RegularExpression("^([0-9]{2}-[0-9]{5})$", ErrorMessage = "Format is 99-99999")]
         public string PoliceFileNumber { get; set; }
 
         [Range(1,int.MaxValue, ErrorMessage = "Value should be greater than 1")]
@@ -95,6 +95,7 @@ namespace GoodSamaritan.Models
         public int FamilyViolenceId { get; set; }
         public FamilyViolenceModel FamilyViolenceFile { get; set; }
 
+        [RegularExpression("^M|F|Trans$")]
         public char Gender { get; set; }
 
         [ForeignKey("Ethnicity")]

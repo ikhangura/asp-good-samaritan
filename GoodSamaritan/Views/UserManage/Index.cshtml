@@ -8,6 +8,10 @@
 {
     <p>@ViewBag.RemoveUserMessage</p>
 }
+@if (ViewBag.ToggleSuspendMessage != null)
+{
+    <p>@ViewBag.ToggleSuspendMessage</p>
+}
 <table class="table">
     @{
         List<String> users = ViewBag.Users;

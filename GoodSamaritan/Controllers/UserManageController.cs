@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
+using System.Web.Security;
 
 namespace GoodSamaritan.Controllers
 {
@@ -28,7 +29,7 @@ namespace GoodSamaritan.Controllers
 
             List<String> userroles = new List<String>();
             List<String> userrolesids = new List<String>();
-            
+
             foreach (var user in users)
             {
                 userid.Add(user.Id);
@@ -59,7 +60,7 @@ namespace GoodSamaritan.Controllers
             List<String> userRolesNames = new List<String>();
             foreach (var role in roles)
             {
-                
+
                 userRoles.Add(role.RoleId);
                 userRolesNames.Add(roleManager.FindById(role.RoleId).Name);
             }
@@ -75,7 +76,7 @@ namespace GoodSamaritan.Controllers
                 allRolesId.Add(role.Id);
             }
 
-            
+
             ViewBag.RolesId = userRoles;
             ViewBag.RolesNames = userRolesNames;
 
@@ -155,7 +156,7 @@ namespace GoodSamaritan.Controllers
             ViewBag.RoleIds = userrolesids;
 
             return View("~/Views/UserManage/Index.cshtml");
-            
+
 
 
 
@@ -174,7 +175,9 @@ namespace GoodSamaritan.Controllers
                 {
                     userManager.RemoveFromRole(id, roleManager.FindById(role).Name);
                     ViewBag.message = "User Removed From Role";
-                }else{
+                }
+                else
+                {
                     ViewBag.message = "There must be at least 1 Admin user. This user can not be removed from the Administrator role";
                 }
             }
@@ -227,7 +230,8 @@ namespace GoodSamaritan.Controllers
 
             foreach (string key in formCollection.Keys)
             {
-                if(key.Equals("userid")){
+                if (key.Equals("userid"))
+                {
                     continue;
                 }
                 string state = formCollection[key];
@@ -238,12 +242,12 @@ namespace GoodSamaritan.Controllers
                     userManager.AddToRole(formCollection["userid"], roleManager.FindByName(key).Name);
                 }
 
-                
+
             }
 
-            
+
             ViewBag.AddRoleMessage = "User Added To Role";
-            
+
             string id = formCollection["userid"];
 
             ViewBag.User = userManager.FindById(id).UserName;
@@ -280,7 +284,53 @@ namespace GoodSamaritan.Controllers
 
         public ActionResult ToggleSuspend(string id)
         {
-            //Some logic for suspending or unsuspending a user
+            //logic for suspending or unsuspending a user
+
+            if (Membership.GetUser(userManager.FindById(id).UserName).IsLockedOut)
+            {
+
+                DateTime llo = Membership.GetUser(userManager.FindById(id).UserName).LastLockoutDate;
+                llo.AddYears(5);
+                var dto = new DateTimeOffset();
+
+
+                dto.AddYears(5);
+                userManager.SetLockoutEnabled(id, false);
+                userManager.SetLockoutEndDate(id, dto);
+                ViewBag.ToggleSuspendMessage = "User Has Been Successfuly Suspended";
+            }
+            else
+            {
+                userManager.SetLockoutEnabled(id, true);
+                ViewBag.ToggleSuspendMessage = "User Has Been Successfuly UnSuspended";
+            }
+
+            var users = userManager.Users.ToList();
+            var rolesList = roleManager.Roles.ToList();
+
+            List<String> usernames = new List<String>();
+            List<String> userid = new List<String>();
+
+            List<String> userroles = new List<String>();
+            List<String> userrolesids = new List<String>();
+
+            foreach (var user in users)
+            {
+                userid.Add(user.Id);
+                usernames.Add(user.UserName);
+            }
+
+            foreach (var role in rolesList)
+            {
+                userroles.Add(role.Name);
+                userrolesids.Add(role.Id);
+            }
+
+            ViewBag.Id = userid;
+            ViewBag.Users = usernames;
+            ViewBag.Roles = userroles;
+            ViewBag.RoleIds = userrolesids;
+
 
             return View("~/Views/UserManage/Index.cshtml");
         }
@@ -295,7 +345,7 @@ namespace GoodSamaritan.Controllers
         {
             string roleName = formCollection["rolename"];
 
-            if (roleName.Equals("Role Name"))
+            if (roleName.Equals("Role Name") || roleName.Length < 2 || roleName.Contains("  ") || roleName.First().Equals(' '))
             {
                 ViewBag.CreateRoleMessage = "Invalid Role Entered";
                 return View("~/Views/UserManage/CreateRole.cshtml");
@@ -310,7 +360,7 @@ namespace GoodSamaritan.Controllers
             {
                 ViewBag.CreateRoleMessage = "This Role Already Exists and Has Not Been Created";
             }
-            
+
             return View("~/Views/UserManage/CreateRole.cshtml");
         }
 
@@ -330,6 +380,12 @@ namespace GoodSamaritan.Controllers
             string oldRoleId = formCollection["oldroleid"];
             string newRoleName = formCollection["rolename"];
 
+            if (newRoleName.Equals("Role Name") || newRoleName.Length < 2 || newRoleName.Contains("  ") || newRoleName.First().Equals(' '))
+            {
+                ViewBag.EditRoleMessage = "Invalid Role Entered";
+                return View("~/Views/UserManage/CreateRole.cshtml");
+            }
+
             IdentityRole oldRole = roleManager.FindById(oldRoleId);
 
             oldRole.Name = newRoleName;
@@ -341,50 +397,5 @@ namespace GoodSamaritan.Controllers
             return View();
         }
 
-
-
-        // GET: UserManage/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: UserManage/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: UserManage/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: UserManage/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
