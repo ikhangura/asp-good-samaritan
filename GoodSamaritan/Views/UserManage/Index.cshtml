@@ -43,16 +43,20 @@
 
 <h2>Roles</h2>
 @Html.ActionLink("Create Role", "CreateRole", "UserManage")
+@if (ViewBag.RemoveRoleMessage != null)
+{
+    <p>@ViewBag.RemoveRoleMessage</p>
+}
 <table class="table">
     @for (int i = 0 ; i < roles.Count; i++)
     {
         <tr>
             <td>
-                @Html.ActionLink(roles.ElementAt(i), "RoleDetails", new { id = roles.ElementAt(i) })
+                @roles.ElementAt(i)
             </td>
             <td>
                 @if(!roles.ElementAt(i).Equals("Administrator")){
-                    @Html.ActionLink("Remove", "RemoveRole", new { id = roles.ElementAt(i) })
+                    @Html.ActionLink("Remove", "RemoveRole", new { id = roleids.ElementAt(i) })
                 }
             </td>
             <td>

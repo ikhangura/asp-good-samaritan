@@ -282,26 +282,64 @@ namespace GoodSamaritan.Controllers
             return View("~/Views/UserManage/UserDetails.cshtml");
         }
 
+        public ActionResult RemoveRole(string id)
+        {
+            List<ApplicationUser> userList = userManager.Users.ToList();
+
+            foreach (ApplicationUser user in userList)
+            {
+                userManager.RemoveFromRole(user.Id, roleManager.FindById(id).Name);
+            }
+
+            roleManager.Delete(roleManager.FindById(id));
+
+            ViewBag.RemoveRoleMessage = "Role Successfuly Removed";
+
+            /* LOAD INDEX PAGE */
+
+            var users = userManager.Users.ToList();
+            var roles = roleManager.Roles.ToList();
+
+            List<String> usernames = new List<String>();
+            List<String> userid = new List<String>();
+
+            List<String> userroles = new List<String>();
+            List<String> userrolesids = new List<String>();
+
+            foreach (var user in users)
+            {
+                userid.Add(user.Id);
+                usernames.Add(user.UserName);
+            }
+
+            foreach (var role in roles)
+            {
+                userroles.Add(role.Name);
+                userrolesids.Add(role.Id);
+            }
+
+            ViewBag.Id = userid;
+            ViewBag.Users = usernames;
+            ViewBag.Roles = userroles;
+            ViewBag.RoleIds = userrolesids;
+
+            return View("~/Views/UserManage/Index.cshtml");
+            //return RedirectToAction("Index");
+        }
+
         public ActionResult ToggleSuspend(string id)
         {
             //logic for suspending or unsuspending a user
 
-            if (Membership.GetUser(userManager.FindById(id).UserName).IsLockedOut)
+            if (!userManager.FindById(id).LockoutEnabled)
             {
+                userManager.SetLockoutEnabled(id, true);
 
-                DateTime llo = Membership.GetUser(userManager.FindById(id).UserName).LastLockoutDate;
-                llo.AddYears(5);
-                var dto = new DateTimeOffset();
-
-
-                dto.AddYears(5);
-                userManager.SetLockoutEnabled(id, false);
-                userManager.SetLockoutEndDate(id, dto);
                 ViewBag.ToggleSuspendMessage = "User Has Been Successfuly Suspended";
             }
             else
             {
-                userManager.SetLockoutEnabled(id, true);
+                userManager.SetLockoutEnabled(id, false);
                 ViewBag.ToggleSuspendMessage = "User Has Been Successfuly UnSuspended";
             }
 

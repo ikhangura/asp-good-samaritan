@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GoodSamaritan.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GoodSamaritan.Controllers
 {
@@ -72,6 +73,21 @@ namespace GoodSamaritan.Controllers
             {
                 return View(model);
             }
+
+            //if lockout enabled user should be locked out
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            string email = model.Email;
+
+            ApplicationUser user = userManager.FindByName(email);
+
+            bool locked = user.LockoutEnabled;
+
+            if (locked)
+            {
+                ModelState.AddModelError("", "Account Is Suspended. See Administrator For Help");
+                return View(model);
+            }
+
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true

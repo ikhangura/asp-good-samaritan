@@ -37,7 +37,7 @@
 <h3> Add @ViewBag.User to Roles:</h3>
 @if (ViewBag.AddRoleMessage != null)
 {
-    <h4 style="color: red">ViewBag.AddRoleMessage</h4>
+    <h4 style="color: red">@ViewBag.AddRoleMessage</h4>
 }
 
 @using (Html.BeginForm("AddToRole", "UserManage", "POST"))

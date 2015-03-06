@@ -208,6 +208,10 @@
     <Compile Include="Migrations\GoodSamaritanMigrations\201502200624158_Initial4.Designer.cs">
       <DependentUpon>201502200624158_Initial4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\GoodSamaritanMigrations\201503052118071_AddedLookupAnno.cs" />
+    <Compile Include="Migrations\GoodSamaritanMigrations\201503052118071_AddedLookupAnno.Designer.cs">
+      <DependentUpon>201503052118071_AddedLookupAnno.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\GoodSamaritanMigrations\Configuration.cs" />
     <Compile Include="Migrations\IdentityMigrations\201502200412313_Initial2.cs" />
     <Compile Include="Migrations\IdentityMigrations\201502200412313_Initial2.Designer.cs">
@@ -520,6 +524,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\GoodSamaritanMigrations\201502200624158_Initial4.resx">
       <DependentUpon>201502200624158_Initial4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\GoodSamaritanMigrations\201503052118071_AddedLookupAnno.resx">
+      <DependentUpon>201503052118071_AddedLookupAnno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\IdentityMigrations\201502200412313_Initial2.resx">
       <DependentUpon>201502200412313_Initial2.cs</DependentUpon>
