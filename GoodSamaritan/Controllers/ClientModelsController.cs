@@ -67,7 +67,10 @@ namespace GoodSamaritan.Controllers
             ViewBag.ClientReferenceNumber = new SelectList(db.SmartModel, "ClientReferenceNumber", "ClientReferenceNumber");
             ViewBag.StatusOfFileId = new SelectList(db.StatusOfFileModel, "StatusOfFileId", "StatusOfFile");
             ViewBag.VictimOfIncidentId = new SelectList(db.VictimOfIncidentModel, "VictimOFIncidentId", "VictimOfIncident");
-            return View();
+            return View(new ClientModel
+            {
+                SWCFileNumber = swc
+            });
         }
 
         // POST: ClientModels/Create

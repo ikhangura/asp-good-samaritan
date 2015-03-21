@@ -11,12 +11,13 @@ namespace GoodSamaritan.Models
 {
     public class ClientModel
     {
+        [Display(Name = "Client Reference Number")]
         [Key]
         [ForeignKey("SmartModel")]
         public int ClientReferenceNumber { get; set; }
-
         public SmartModel SmartModel { get; set; }
 
+        [Display(Name = "Fiscal Year")]
         [ForeignKey("FiscalYear")]
         public int FiscalYearId { get; set; }
         public FiscalYearModel FiscalYear { get; set; }

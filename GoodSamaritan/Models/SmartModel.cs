@@ -10,6 +10,7 @@ namespace GoodSamaritan.Models
 {
     public class SmartModel
     {
+        [Display(Name = "Client Reference Number")]
         [Key]
         public int ClientReferenceNumber { get; set; }
 
