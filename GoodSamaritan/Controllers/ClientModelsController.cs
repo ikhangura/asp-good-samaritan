@@ -11,6 +11,7 @@ using GoodSamaritan.Models;
 
 namespace GoodSamaritan.Controllers
 {
+    [Authorize(Roles = "Administrator, Worker")]
     public class ClientModelsController : Controller
     {
         private GoodSamaritanModel db = new GoodSamaritanModel();
@@ -18,6 +19,8 @@ namespace GoodSamaritan.Controllers
         // GET: ClientModels
         public async Task<ActionResult> Index()
         {
+            
+
             var clientModel = db.ClientModel.Include(c => c.AbuserRelationship).Include(c => c.Age).Include(c => c.AssignedWorker).Include(c => c.Crisis).Include(c => c.DuplicateFile).Include(c => c.Ethnicity).Include(c => c.FamilyViolenceFile).Include(c => c.FiscalYear).Include(c => c.Incident).Include(c => c.Program).Include(c => c.ReferralContact).Include(c => c.ReferralSource).Include(c => c.RepeatClient).Include(c => c.RiskLevel).Include(c => c.RiskStatus).Include(c => c.Service).Include(c => c.SmartModel).Include(c => c.StatusOfFile).Include(c => c.VictimOfIncident);
             return View(await clientModel.ToListAsync());
         }
@@ -40,6 +43,11 @@ namespace GoodSamaritan.Controllers
         // GET: ClientModels/Create
         public ActionResult Create()
         {
+            //generate random SWC File Number and pass to view
+            Random generator = new Random();
+            int swc = generator.Next(int.MaxValue);
+            ViewBag.SWC = swc;
+
             ViewBag.AbuserRelationshipId = new SelectList(db.AbuserRelationshipModel, "AbuserRelationShipId", "AbuserRelationship");
             ViewBag.AgeId = new SelectList(db.AgeModel, "AgeId", "Age");
             ViewBag.AssignedWorkerId = new SelectList(db.AssignedWorkerModel, "AssignedWorkerId", "AssignedWorker");
