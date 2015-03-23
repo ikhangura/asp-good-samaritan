@@ -6,6 +6,7 @@ using GoodSamaritan.Models.LookupTables;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using System.Web.Mvc;
 
 namespace GoodSamaritan.Models
 {
@@ -13,6 +14,7 @@ namespace GoodSamaritan.Models
     {
         [Display(Name = "Client Reference Number")]
         [Key]
+        [HiddenInput(DisplayValue = false)]
         [ForeignKey("SmartModel")]
         public int ClientReferenceNumber { get; set; }
         public SmartModel SmartModel { get; set; }
@@ -22,10 +24,10 @@ namespace GoodSamaritan.Models
         public int FiscalYearId { get; set; }
         public FiscalYearModel FiscalYear { get; set; }
 
-        [Range(0, 12, ErrorMessage = "valid month is between 1 to 12")]
+        [Range(1, 12, ErrorMessage = "valid month is between 1 to 12")]
         public int Month { get; set; }
 
-        [Range(0, 31, ErrorMessage = "Valid days are between 1 to 31")]
+        [Range(1, 31, ErrorMessage = "Valid days are between 1 to 31")]
         public int Day { get; set; }
 
         [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Invalid Last Name")]
@@ -45,7 +47,7 @@ namespace GoodSamaritan.Models
 
         [ReadOnly(true)]
         [Display(Name = "SWC File Number")]
-        [Range(0, int.MaxValue, ErrorMessage = "valid value is be zero or greater")]
+        [Range(0, int.MaxValue, ErrorMessage = "valid value is to be zero or greater")]
         public int SWCFileNumber { get; set; }
 
         [Display(Name = "Risk Level")]
@@ -116,8 +118,9 @@ namespace GoodSamaritan.Models
         public int FamilyViolenceId { get; set; }
         public FamilyViolenceModel FamilyViolenceFile { get; set; }
 
-        [RegularExpression("^M|F|Trans$")]
-        public char Gender { get; set; }
+        [RegularExpression("^(M|F|Trans)$", ErrorMessage = "Gender Is Either M, F or Trans")]
+        [MaxLength(5)]
+        public string Gender { get; set; }
 
         [Display(Name = "Ethnicity")]
         [ForeignKey("Ethnicity")]

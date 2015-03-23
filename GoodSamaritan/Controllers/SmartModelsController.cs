@@ -40,23 +40,23 @@ namespace GoodSamaritan.Controllers
         // GET: SmartModels/Create
         public ActionResult Create()
         {
-            ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReportId", "BadDateReport");
-            ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssaultId", "CityOfAssault");
-            ViewBag.CityOfResidenceId = new SelectList(db.CityOfResidenceModel, "CityOfResidenceId", "CityOfResidence");
-            ViewBag.DrugFaciliatedAssaultID = new SelectList(db.DrugFacilitatedAssaultModel, "DrugFacilitatedAssaultId", "DrugFacilitatedAssault");
-            ViewBag.EvidenceStoredId = new SelectList(db.EvidenceStoredModel, "EvidenceStoredId", "EvidenceStored");
-            ViewBag.HIVMedsId = new SelectList(db.HIVMedsModel, "HIVMedsId", "HIVMeds");
-            ViewBag.HospitalAttendedId = new SelectList(db.HospitalAttendedModel, "HospitalAttendedId", "HospitalAttended");
-            ViewBag.MedicalOnlyId = new SelectList(db.MedicalOnlyModel, "MedicalOnlyId", "MedicalOnly");
-            ViewBag.MultiplePErpetratorsId = new SelectList(db.MultiplePerpetratorsModel, "MultiplePerpetratorsID", "MultiplePerpetrators");
-            ViewBag.PoliceAttendanceID = new SelectList(db.PoliceAttendanceModel, "PoliceAttendanceId", "PolicAttendance");
-            ViewBag.PoliceReportedId = new SelectList(db.PoliceReportedModel, "PoliceReportedId", "PolicReported");
-            ViewBag.ReferralHospitalId = new SelectList(db.ReferralHospitalModel, "ReferralHospitalID", "ReferralHospital");
-            ViewBag.ReferredToCBVSId = new SelectList(db.ReferredCBVSModel, "ReferralCBVSID", "ReferredCBVS");
-            ViewBag.SocialWorkAttendanceId = new SelectList(db.SocialWorkAttendanceModel, "SocalWorkAttendanceId", "SocialWorkAttendance");
-            ViewBag.ThirsPartyReportId = new SelectList(db.ThirdPartyReportModel, "ThirdPartyReportID", "ThirdPartyReport");
-            ViewBag.VictimServicesId = new SelectList(db.VictimServicesModel, "VictimServicesID", "VictimServices");
-            ViewBag.WorkExploitationId = new SelectList(db.Work_ExploitationModel, "SexWorkExploitationId", "SexWorkExploitation");
+            ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReport", "BadDateReport");
+            ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssault", "CityOfAssault");
+            ViewBag.CityOfResidenceId = new SelectList(db.CityOfResidenceModel, "CityOfResidence", "CityOfResidence");
+            ViewBag.DrugFaciliatedAssaultID = new SelectList(db.DrugFacilitatedAssaultModel, "DrugFacilitatedAssault", "DrugFacilitatedAssault");
+            ViewBag.EvidenceStoredId = new SelectList(db.EvidenceStoredModel, "EvidenceStored", "EvidenceStored");
+            ViewBag.HIVMedsId = new SelectList(db.HIVMedsModel, "HIVMeds", "HIVMeds");
+            ViewBag.HospitalAttendedId = new SelectList(db.HospitalAttendedModel, "HospitalAttended", "HospitalAttended");
+            ViewBag.MedicalOnlyId = new SelectList(db.MedicalOnlyModel, "MedicalOnly", "MedicalOnly");
+            ViewBag.MultiplePErpetratorsId = new SelectList(db.MultiplePerpetratorsModel, "MultiplePerpetrators", "MultiplePerpetrators");
+            ViewBag.PoliceAttendanceID = new SelectList(db.PoliceAttendanceModel, "PolicAttendance", "PolicAttendance");
+            ViewBag.PoliceReportedId = new SelectList(db.PoliceReportedModel, "PolicReported", "PolicReported");
+            ViewBag.ReferralHospitalId = new SelectList(db.ReferralHospitalModel, "ReferralHospital", "ReferralHospital");
+            ViewBag.ReferredToCBVSId = new SelectList(db.ReferredCBVSModel, "ReferredCBVS", "ReferredCBVS");
+            ViewBag.SocialWorkAttendanceId = new SelectList(db.SocialWorkAttendanceModel, "SocialWorkAttendance", "SocialWorkAttendance");
+            ViewBag.ThirsPartyReportId = new SelectList(db.ThirdPartyReportModel, "ThirdPartyReport", "ThirdPartyReport");
+            ViewBag.VictimServicesId = new SelectList(db.VictimServicesModel, "VictimServices", "VictimServices");
+            ViewBag.WorkExploitationId = new SelectList(db.Work_ExploitationModel, "SexWorkExploitation", "SexWorkExploitation");
             return View();
         }
 

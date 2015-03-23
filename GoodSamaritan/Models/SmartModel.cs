@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using GoodSamaritan.Models.LookupTables;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace GoodSamaritan.Models
 {
@@ -12,6 +13,7 @@ namespace GoodSamaritan.Models
     {
         [Display(Name = "Client Reference Number")]
         [Key]
+        [HiddenInput(DisplayValue = false)]
         public int ClientReferenceNumber { get; set; }
 
         [Display(Name = "Work Exploitation")]

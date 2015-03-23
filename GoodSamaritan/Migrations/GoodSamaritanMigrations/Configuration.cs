@@ -16,7 +16,7 @@ namespace GoodSamaritan.Migrations.GoodSamaritanMigrations
             AutomaticMigrationsEnabled = false;
             MigrationsDirectory = @"Migrations\GoodSamaritanMigrations";
 
-            //Database.SetInitializer(new DropCreateDatabaseAlways<GoodSamaritanModel>()); // always drops and recreates database
+            Database.SetInitializer(new DropCreateDatabaseAlways<GoodSamaritanModel>()); // always drops and recreates database
         }
 
         protected override void Seed(GoodSamaritan.Models.GoodSamaritanModel context)
