@@ -3,9 +3,18 @@
 var smartFormAdded = false;
 
 $(document).ready(function () {
-    $("#ProgramId").change(function () {
-        if (this.value == "SMART") {
-            //alert("SMART OPTION SELECTED");
+
+    alert(document.getElementById("ProgramId").value);
+
+    if (document.getElementById("ProgramId").value == 3) {
+        addSmartForm();
+    } else {
+        removeSmartForm();
+    }
+
+    $("#ProgramId").change(function() {
+        if (this.value == 3) {
+            alert("SMART OPTION SELECTED");
             addSmartForm();
         } else {
             if (smartFormAdded) {
@@ -14,14 +23,57 @@ $(document).ready(function () {
         }
     })
 
-    $("#create_user_form").submit(function () {
-        if ($('#create_user_form').valid()) {
+    $("#signupform").submit(function () {
+        if ($('#signupform').valid()) {
             alert("TRUE");
         } else {
             alert("FALSE");
         }
     })
 })
+
+function checkIfSmartSelected() {
+    alert(document.getElementById("ProgramId").value);
+    if (document.getElementById("ProgramId").value == 3) {
+        alert("Adding");
+        addSmartForm();
+    } else {
+        alert("Removing");
+        removeSmartForm();
+    }
+}
+
+function validateExtras() {
+    var status = true;
+    alert("HERE");
+
+    //if smart is not loaded then don't validate it
+    if (document.getElementById("ProgramId").value != 3) {
+        return true;
+    }
+
+
+    var accompMin = document.getElementById("SmartModel_AccompanimentMinutes").value;
+    var transNum = document.getElementById("SmartModel_NumberTransportsProvided").value;
+    alert(accompMin);
+    if (accompMin.match(/^[0-9]+$/) == null) {
+        alert("accompMin: failure");
+        document.getElementById("accompaniment_minutes_error").innerHTML = "The Required Field Must Be A Number";
+        status = false;
+    } else {
+        alert("accompMin: passed");
+    }
+
+    if (transNum.match(/^[0-9]+$/) == null) {
+        alert("transNum: failure");
+        document.getElementById("transNum_error").innerHTML = "The Required Field Must Be A Number";
+        status = false;
+    } else {
+        alert("transNum: passed");
+    }
+
+    return status;
+}
 
 function addSmartForm() {
     /*$.ajax({
@@ -39,12 +91,12 @@ function addSmartForm() {
     });
     return false;*/
     smartFormAdded = true;
-    document.getElementById("smart-form-placeholder").style.display = "inline";
+    document.getElementById("smart-entity-placeholder").style.display = "inline";
 }
 
 function removeSmartForm() {
     //document.getElementById("smart-form-placeholder").innerHTML = "";
-    document.getElementById("smart-form-placeholder").style.display = "none";
+    document.getElementById("smart-entity-placeholder").style.display = "none";
 }
 
 
