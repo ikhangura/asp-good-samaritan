@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
-
+@**
 <h2>Create</h2>
 
 
@@ -14,12 +15,12 @@
     
     <div class="form-horizontal">
         <h4>SmartModel</h4>
-        <hr />
+        <hr />**@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.WorkExploitationId, "WorkExploitationId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("WorkExploitationId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("WorkExploitationId", null, htmlAttributes: new { @class = "form-control" , ng_model="smartFormInfo.WorkExploitation"})
                 @Html.ValidationMessageFor(model => model.WorkExploitationId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MultiplePErpetratorsId, "MultiplePErpetratorsId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("MultiplePErpetratorsId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("MultiplePErpetratorsId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.MultiplePerpetrators" })
                 @Html.ValidationMessageFor(model => model.MultiplePErpetratorsId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DrugFaciliatedAssaultID, "DrugFaciliatedAssaultID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("DrugFaciliatedAssaultID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("DrugFaciliatedAssaultID", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.DrugFacilitatedAssault" })
                 @Html.ValidationMessageFor(model => model.DrugFaciliatedAssaultID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CityOfAssaultId, "CityOfAssaultId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CityOfAssaultId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CityOfAssaultId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.CityOfAssault" })
                 @Html.ValidationMessageFor(model => model.CityOfAssaultId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,7 +52,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CityOfResidenceId, "CityOfResidenceId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CityOfResidenceId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CityOfResidenceId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.CityOfResidence" })
                 @Html.ValidationMessageFor(model => model.CityOfResidenceId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,7 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AccompanimentMinutes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AccompanimentMinutes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.AccompanimentMinutes, new { htmlAttributes = new { @class = "form-control", ng_model="smartFormInfo.AccompanimentMinutes" } })
                 @Html.ValidationMessageFor(model => model.AccompanimentMinutes, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ReferralHospitalId, "ReferralHospitalId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ReferralHospitalId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ReferralHospitalId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.ReferralHospital" })
                 @Html.ValidationMessageFor(model => model.ReferralHospitalId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -75,7 +76,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HospitalAttendedId, "HospitalAttendedId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("HospitalAttendedId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("HospitalAttendedId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.HospitalAttended" })
                 @Html.ValidationMessageFor(model => model.HospitalAttendedId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -83,7 +84,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SocialWorkAttendanceId, "SocialWorkAttendanceId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("SocialWorkAttendanceId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("SocialWorkAttendanceId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.SocialWorkAttendance" })
                 @Html.ValidationMessageFor(model => model.SocialWorkAttendanceId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -91,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PoliceAttendanceID, "PoliceAttendanceID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("PoliceAttendanceID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("PoliceAttendanceID", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.PoliceAttendance" })
                 @Html.ValidationMessageFor(model => model.PoliceAttendanceID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,7 +100,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.VictimServicesId, "VictimServicesId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("VictimServicesId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("VictimServicesId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.VictinServices" })
                 @Html.ValidationMessageFor(model => model.VictimServicesId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -107,7 +108,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MedicalOnlyId, "MedicalOnlyId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("MedicalOnlyId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("MedicalOnlyId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.MedicalOnly" })
                 @Html.ValidationMessageFor(model => model.MedicalOnlyId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -115,7 +116,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EvidenceStoredId, "EvidenceStoredId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("EvidenceStoredId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("EvidenceStoredId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.EvidenceStored" })
                 @Html.ValidationMessageFor(model => model.EvidenceStoredId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -123,7 +124,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HIVMedsId, "HIVMedsId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("HIVMedsId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("HIVMedsId", null, htmlAttributes: new { @class = "form-control" , ng_model="smartFormInfo.HIVMeds"})
                 @Html.ValidationMessageFor(model => model.HIVMedsId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -131,7 +132,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ReferredToCBVSId, "ReferredToCBVSId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ReferredToCBVSId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ReferredToCBVSId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.ReferredToCBVS" })
                 @Html.ValidationMessageFor(model => model.ReferredToCBVSId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -139,7 +140,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PoliceReportedId, "PoliceReportedId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("PoliceReportedId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("PoliceReportedId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.PoliceReported" })
                 @Html.ValidationMessageFor(model => model.PoliceReportedId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -147,7 +148,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ThirsPartyReportId, "ThirsPartyReportId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ThirsPartyReportId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ThirsPartyReportId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.ThirdPartyReport" })
                 @Html.ValidationMessageFor(model => model.ThirsPartyReportId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -155,7 +156,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BadDateReportId, "BadDateReportId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("BadDateReportId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("BadDateReportId", null, htmlAttributes: new { @class = "form-control", ng_model="smartFormInfo.BadDateReport" })
                 @Html.ValidationMessageFor(model => model.BadDateReportId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -163,7 +164,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NumberTransportsProvided, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NumberTransportsProvided, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NumberTransportsProvided, new { htmlAttributes = new { @class = "form-control", ng_model="smartFormInfo.NumberTransportsProvided" } })
                 @Html.ValidationMessageFor(model => model.NumberTransportsProvided, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -172,12 +173,12 @@
             @Html.LabelFor(model => model.ReferredToNursePractitioner, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.ReferredToNursePractitioner)
+                    @Html.EditorFor(model => model.ReferredToNursePractitioner, new { htmlAttributes = new { ng_model = "smartFormInfo.ReferredToNursePractitioner" } })
                     @Html.ValidationMessageFor(model => model.ReferredToNursePractitioner, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-
+@*
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -193,3 +194,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+*@

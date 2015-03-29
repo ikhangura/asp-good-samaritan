@@ -10,6 +10,7 @@ namespace GoodSamaritan.Models.LookupTables
     public class FiscalYearModel
     {
         [Key]
+        [Display(Name = "Fiscal Year")]
         [HiddenInput(DisplayValue = false)]
         public int FicalYearId { get; set; }
         [Required]

@@ -16,7 +16,7 @@ namespace GoodSamaritan.Migrations.GoodSamaritanMigrations
             AutomaticMigrationsEnabled = false;
             MigrationsDirectory = @"Migrations\GoodSamaritanMigrations";
 
-            //Database.SetInitializer(new DropCreateDatabaseAlways<GoodSamaritanModel>()); // always drops and recreates database
+            Database.SetInitializer(new DropCreateDatabaseAlways<GoodSamaritanModel>()); // always drops and recreates database
         }
 
         protected override void Seed(GoodSamaritan.Models.GoodSamaritanModel context)
@@ -34,6 +34,32 @@ namespace GoodSamaritan.Migrations.GoodSamaritanMigrations
             //    );
             //
 
+            context.SmartModel.AddOrUpdate(
+                sm => sm.ClientReferenceNumber,
+                new SmartModel {  
+                    ClientReferenceNumber = 5, 
+                    WorkExploitationId = 1, 
+                    MultiplePErpetratorsId = 1, 
+                    DrugFaciliatedAssaultID = 1,
+                    CityOfAssaultId = 1,
+                    CityOfResidenceId = 1,
+                    AccompanimentMinutes = 5,
+                    ReferralHospitalId = 1,
+                    HospitalAttendedId = 1,
+                    SocialWorkAttendanceId  =1,
+                    PoliceAttendanceID = 1,
+                    VictimServicesId  =1,
+                    MedicalOnlyId = 1,
+                    EvidenceStoredId = 1,
+                    HIVMedsId = 1,
+                    ReferredToCBVSId = 1,
+                    PoliceReportedId = 1,
+                    ThirsPartyReportId = 1,
+                    BadDateReportId = 1,
+                    NumberTransportsProvided = 5,
+                    ReferredToNursePractitioner = false
+                }
+            );
             
            
 

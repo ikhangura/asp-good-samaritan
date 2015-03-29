@@ -15,7 +15,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
         // If you wish to target a different database and/or database provider, modify the 'GoodSamaritanModel' 
         // connection string in the application configuration file.
         public GoodSamaritanModel()
-            : base("name=GoodSamaritanModel")
+            : base("name=DefaultConnection")
         {
             
         }
