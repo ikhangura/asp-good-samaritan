@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Report </h2>
+@Html.ActionLink("Back", "Index", "MVCReportsView")
+<h3> Status</h3>
+
+<ul>
+    <li>Open: @ViewBag.statusOpen</li>
+    <li>Closed: @ViewBag.statusClosed</li>
+    <li>Reopened: @ViewBag.statusReOpened</li>
+</ul>
+
+
+<h3> Program</h3>
+
+<ul>
+    <li>Crisis: @ViewBag.programCrisis</li>
+    <li>Court: @ViewBag.programCourt</li>
+    <li>Smart: @ViewBag.programCmart</li>
+    <li>DVU: @ViewBag.programDVU</li>
+    <li>MCFD: @ViewBag.programMCFD</li>
+</ul>
+
+
+<h3> Gender</h3>
+
+<ul>
+    <li>Male: @ViewBag.genderMale</li>
+    <li>Female: @ViewBag.genderFemale</li>
+    <li>Trans: @ViewBag.genderTrans</li>
+</ul>

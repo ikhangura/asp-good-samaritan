@@ -231,6 +231,7 @@
     <Compile Include="Controllers\LookupTables\SmartLookups\PoliceReportedModelsController.cs" />
     <Compile Include="Controllers\LookupTables\SmartLookups\ReferralHospitalModelsController.cs" />
     <Compile Include="Controllers\LookupTables\SmartLookups\ReferredCBVSModelsController.cs" />
+    <Compile Include="Controllers\MVCReportsViewController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ReportsViewController.cs" />
     <Compile Include="Controllers\Utils\ReportSearch.cs" />
@@ -1360,6 +1361,8 @@
     <Content Include="Views\ClientModels\Edit.cshtml" />
     <Content Include="Views\ClientModels\Index.cshtml" />
     <Content Include="Views\ReportsView\Index.cshtml" />
+    <Content Include="Views\MVCReportsView\Index.cshtml" />
+    <Content Include="Views\MVCReportsView\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\NewFolder1\" />

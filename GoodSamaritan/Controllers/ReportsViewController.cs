@@ -9,7 +9,7 @@ namespace GoodSamaritan.Controllers
     [Authorize(Roles="Administrator, Worker")]
     public class ReportsViewController : Controller
     {
-        // GET: ReportsView
+        // GET: ReportsView -- FOR ANGULAR
         public ActionResult Index()
         {
             return View();
