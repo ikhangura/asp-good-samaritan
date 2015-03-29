@@ -1,41 +1,41 @@
 # asp-good-samaritan
 
 #API
-Route: POST /api/Reports
+Route: POST /api/Reports <br>
 Body: <br>
-````json
+````javascript
 {
   'year':String,
   'month':String,
 }
 ````
 Body On Reply: <br>
-````json
+````javascript
 {
     "$id": "1",
     "status": {
-        "open": "0",
-        "closed": "0",
-        "reopened": "2"
+        "open": String,
+        "closed": String,
+        "reopened": String
     },
     "program": {
-        "crisis": "0",
-        "court": "0",
-        "smart": "2",
-        "dvu": "0",
-        "mcfd": "0"
+        "crisis": String,
+        "court": String,
+        "smart": String,
+        "dvu": String,
+        "mcfd": String
     },
     "gender": {
-        "female": "1",
-        "male": "1",
-        "trans": "0"
+        "female": String,
+        "male": String,
+        "trans": String
     },
     "age": {
-        "adult": "2",
-        "youth1825": "0",
-        "youth1219": "0",
-        "child": "0",
-        "senior": "0"
+        "adult": String,
+        "youth1825": String, // youth 18 - 25
+        "youth1219": String, // youth 12 - 19
+        "child": String,
+        "senior": string
     }
 }
 ````
