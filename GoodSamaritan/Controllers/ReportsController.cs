@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace GoodSamaritan.Controllers
 {
+    [Authorize]
     public class ReportsController : ApiController
     {
 
