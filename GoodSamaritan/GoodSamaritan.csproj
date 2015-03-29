@@ -232,6 +232,7 @@
     <Compile Include="Controllers\LookupTables\SmartLookups\ReferralHospitalModelsController.cs" />
     <Compile Include="Controllers\LookupTables\SmartLookups\ReferredCBVSModelsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\ReportsViewController.cs" />
     <Compile Include="Controllers\Utils\ReportSearch.cs" />
     <Compile Include="Controllers\Utils\ReportSearchReply.cs" />
     <Compile Include="Controllers\SmartModelsController.cs" />
@@ -1357,8 +1358,11 @@
     <Content Include="Views\ClientModels\Details.cshtml" />
     <Content Include="Views\ClientModels\Edit.cshtml" />
     <Content Include="Views\ClientModels\Index.cshtml" />
+    <Content Include="Views\ReportsView\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
