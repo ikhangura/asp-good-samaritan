@@ -7,7 +7,7 @@ namespace GoodSamaritan.Controllers
 {
     public class ReportSearch
     {
-        public string month { get; set; }
+        public int month { get; set; }
 
         public string year { get; set; }
     }
