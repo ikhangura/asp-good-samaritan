@@ -34,7 +34,19 @@ namespace GoodSamaritan.Controllers
             {
                 return HttpNotFound();
             }
-            return View(clientModel);
+
+            SmartModel smartModel = db.SmartModel.Find(id);
+            if (smartModel != null)
+            {
+                ViewBag.ShowSmart = true;
+            }
+            else
+            {
+                ViewBag.ShowSmart = false;
+                smartModel = new SmartModel();
+            }
+
+            return View(new Tuple<ClientModel,SmartModel>(clientModel, smartModel));
         }
 
         // GET: ClientModels/Create
@@ -125,6 +137,8 @@ namespace GoodSamaritan.Controllers
             return sm.ClientReferenceNumber;
 
         }
+
+       
 
         // POST: ClientModels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -235,6 +249,14 @@ namespace GoodSamaritan.Controllers
             {
                 return HttpNotFound();
             }
+
+            SmartModel smartModel = db.SmartModel.Find(id);
+            if (smartModel != null && clientModel.ProgramId == 3)
+            {
+                ViewBag.Announce = true;
+                ViewBag.ClientId = id;
+            }
+   
             ViewBag.AbuserRelationshipId = new SelectList(db.AbuserRelationshipModel, "AbuserRelationShipId", "AbuserRelationship", clientModel.AbuserRelationshipId);
             ViewBag.AgeId = new SelectList(db.AgeModel, "AgeId", "Age", clientModel.AgeId);
             ViewBag.AssignedWorkerId = new SelectList(db.AssignedWorkerModel, "AssignedWorkerId", "AssignedWorker", clientModel.AssignedWorkerId);
@@ -262,14 +284,24 @@ namespace GoodSamaritan.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientReferenceNumber,FiscalYearId,Month,Day,Surname,FirstName,PoliceFileNumber,CourtFileNumber,SWCFileNumber,RiskLevelId,CrisisId,ServiceId,ProgramId,RiskAssessmentAssignedTo,RiskStatusId,AssignedWorkerId,ReferralSourceId,ReferralContactId,IncidentId,AbuserName,AbuserRelationshipId,VictimOfIncidentId,FamilyViolenceId,Gender,EthnicityId,AgeId,RepeatClientId,DuplicateFileId,NumChildren0_6,NumChildren7_12,NumChildren13_18,StatusOfFileId,DateLastTransferred,DateClosed,DateReOpened")] ClientModel clientModel)
+        public ActionResult Edit([Bind(Include = "ClientReferenceNumber,FiscalYearId,Month,Day,Surname,FirstName,PoliceFileNumber,CourtFileNumber,SWCFileNumber,RiskLevelId,CrisisId,ServiceId,ProgramId,RiskAssessmentAssignedTo,RiskStatusId,AssignedWorkerId,ReferralSourceId,ReferralContactId,IncidentId,AbuserName,AbuserRelationshipId,VictimOfIncidentId,FamilyViolenceId,Gender,EthnicityId,AgeId,RepeatClientId,DuplicateFileId,NumChildren0_6,NumChildren7_12,NumChildren13_18,StatusOfFileId,DateLastTransferred,DateClosed,DateReOpened")] ClientModel clientModel, FormCollection smartFormCollection)
         {
+
             if (ModelState.IsValid)
             {
+
                 db.Entry(clientModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+
+            if (clientModel.ProgramId == 3)
+            {
+                ViewBag.Announce = true;
+                ViewBag.ClientId = clientModel.ClientReferenceNumber;
+            }
+
             ViewBag.AbuserRelationshipId = new SelectList(db.AbuserRelationshipModel, "AbuserRelationShipId", "AbuserRelationship", clientModel.AbuserRelationshipId);
             ViewBag.AgeId = new SelectList(db.AgeModel, "AgeId", "Age", clientModel.AgeId);
             ViewBag.AssignedWorkerId = new SelectList(db.AssignedWorkerModel, "AssignedWorkerId", "AssignedWorker", clientModel.AssignedWorkerId);
@@ -304,6 +336,11 @@ namespace GoodSamaritan.Controllers
             {
                 return HttpNotFound();
             }
+
+
+
+
+
             return View(clientModel);
         }
 

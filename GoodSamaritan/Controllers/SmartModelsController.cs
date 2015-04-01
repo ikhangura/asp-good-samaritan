@@ -38,7 +38,7 @@ namespace GoodSamaritan.Controllers
         }
 
         // GET: SmartModels/Create
-        public ActionResult Create()
+        private ActionResult Create()
         {
             ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReport", "BadDateReport");
             ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssault", "CityOfAssault");
@@ -65,7 +65,7 @@ namespace GoodSamaritan.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ClientReferenceNumber,WorkExploitationId,MultiplePErpetratorsId,DrugFaciliatedAssaultID,CityOfAssaultId,CityOfResidenceId,AccompanimentMinutes,ReferralHospitalId,HospitalAttendedId,SocialWorkAttendanceId,PoliceAttendanceID,VictimServicesId,MedicalOnlyId,EvidenceStoredId,HIVMedsId,ReferredToCBVSId,PoliceReportedId,ThirsPartyReportId,BadDateReportId,NumberTransportsProvided,ReferredToNursePractitioner")] SmartModel smartModel)
+        private async Task<ActionResult> Create([Bind(Include = "ClientReferenceNumber,WorkExploitationId,MultiplePErpetratorsId,DrugFaciliatedAssaultID,CityOfAssaultId,CityOfResidenceId,AccompanimentMinutes,ReferralHospitalId,HospitalAttendedId,SocialWorkAttendanceId,PoliceAttendanceID,VictimServicesId,MedicalOnlyId,EvidenceStoredId,HIVMedsId,ReferredToCBVSId,PoliceReportedId,ThirsPartyReportId,BadDateReportId,NumberTransportsProvided,ReferredToNursePractitioner")] SmartModel smartModel)
         {
             if (ModelState.IsValid)
             {
@@ -106,6 +106,9 @@ namespace GoodSamaritan.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ClientId = id;
+
             ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReportId", "BadDateReport", smartModel.BadDateReportId);
             ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssaultId", "CityOfAssault", smartModel.CityOfAssaultId);
             ViewBag.CityOfResidenceId = new SelectList(db.CityOfResidenceModel, "CityOfResidenceId", "CityOfResidence", smartModel.CityOfResidenceId);
@@ -139,6 +142,9 @@ namespace GoodSamaritan.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.ClientId = smartModel.ClientReferenceNumber;
+
+
             ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReportId", "BadDateReport", smartModel.BadDateReportId);
             ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssaultId", "CityOfAssault", smartModel.CityOfAssaultId);
             ViewBag.CityOfResidenceId = new SelectList(db.CityOfResidenceModel, "CityOfResidenceId", "CityOfResidence", smartModel.CityOfResidenceId);
@@ -160,7 +166,7 @@ namespace GoodSamaritan.Controllers
         }
 
         // GET: SmartModels/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        private async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -177,7 +183,7 @@ namespace GoodSamaritan.Controllers
         // POST: SmartModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        private async Task<ActionResult> DeleteConfirmed(int id)
         {
             SmartModel smartModel = await db.SmartModel.FindAsync(id);
             db.SmartModel.Remove(smartModel);

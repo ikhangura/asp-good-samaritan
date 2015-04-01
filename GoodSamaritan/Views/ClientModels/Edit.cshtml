@@ -6,6 +6,12 @@
 }
 
 <h2>Edit</h2>
+@{
+    if (ViewBag.Announce != null && ViewBag.Announce == true)
+    {
+        <h3>Notice:</h3><p>A SMART Program has been detected with this Client. To Edit the SMART program data for this client, Select <a href="/SmartModels/Edit/@ViewBag.ClientId">HERE</a></p>
+    }
+}
 
 @using (Html.BeginForm())
 {
