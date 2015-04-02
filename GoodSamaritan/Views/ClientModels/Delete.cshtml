@@ -1,4 +1,4 @@
-﻿@model GoodSamaritan.Models.ClientModel
+﻿@model Tuple<GoodSamaritan.Models.ClientModel, GoodSamaritan.Models.SmartModel>
 
 @{
     ViewBag.Title = "Delete";
@@ -13,286 +13,458 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.AbuserRelationship.AbuserRelationship)
+            @Html.DisplayNameFor(model => model.Item1.AbuserRelationship.AbuserRelationship)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AbuserRelationship.AbuserRelationship)
+            @Html.DisplayFor(model => model.Item1.AbuserRelationship.AbuserRelationship)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Age.Age)
+            @Html.DisplayNameFor(model => model.Item1.Age.Age)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Age.Age)
+            @Html.DisplayFor(model => model.Item1.Age.Age)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AssignedWorker.AssignedWorker)
+            @Html.DisplayNameFor(model => model.Item1.AssignedWorker.AssignedWorker)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AssignedWorker.AssignedWorker)
+            @Html.DisplayFor(model => model.Item1.AssignedWorker.AssignedWorker)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Crisis.Crisis)
+            @Html.DisplayNameFor(model => model.Item1.Crisis.Crisis)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Crisis.Crisis)
+            @Html.DisplayFor(model => model.Item1.Crisis.Crisis)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DuplicateFile.DuplicateFile)
+            @Html.DisplayNameFor(model => model.Item1.DuplicateFile.DuplicateFile)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DuplicateFile.DuplicateFile)
+            @Html.DisplayFor(model => model.Item1.DuplicateFile.DuplicateFile)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Ethnicity.Ethnicity)
+            @Html.DisplayNameFor(model => model.Item1.Ethnicity.Ethnicity)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Ethnicity.Ethnicity)
+            @Html.DisplayFor(model => model.Item1.Ethnicity.Ethnicity)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FamilyViolenceFile.FamilyViolenceFile)
+            @Html.DisplayNameFor(model => model.Item1.FamilyViolenceFile.FamilyViolenceFile)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FamilyViolenceFile.FamilyViolenceFile)
+            @Html.DisplayFor(model => model.Item1.FamilyViolenceFile.FamilyViolenceFile)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FiscalYear.FiscalYear)
+            @Html.DisplayNameFor(model => model.Item1.FiscalYear.FiscalYear)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FiscalYear.FiscalYear)
+            @Html.DisplayFor(model => model.Item1.FiscalYear.FiscalYear)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Incident.Incident)
+            @Html.DisplayNameFor(model => model.Item1.Incident.Incident)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Incident.Incident)
+            @Html.DisplayFor(model => model.Item1.Incident.Incident)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Program.Program)
+            @Html.DisplayNameFor(model => model.Item1.Program.Program)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Program.Program)
+            @Html.DisplayFor(model => model.Item1.Program.Program)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ReferralContact.ReferralContact)
+            @Html.DisplayNameFor(model => model.Item1.ReferralContact.ReferralContact)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ReferralContact.ReferralContact)
+            @Html.DisplayFor(model => model.Item1.ReferralContact.ReferralContact)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ReferralSource.ReferralSource)
+            @Html.DisplayNameFor(model => model.Item1.ReferralSource.ReferralSource)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ReferralSource.ReferralSource)
+            @Html.DisplayFor(model => model.Item1.ReferralSource.ReferralSource)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RepeatClient.RepeatClient)
+            @Html.DisplayNameFor(model => model.Item1.RepeatClient.RepeatClient)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RepeatClient.RepeatClient)
+            @Html.DisplayFor(model => model.Item1.RepeatClient.RepeatClient)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RiskLevel.RiskLevel)
+            @Html.DisplayNameFor(model => model.Item1.RiskLevel.RiskLevel)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RiskLevel.RiskLevel)
+            @Html.DisplayFor(model => model.Item1.RiskLevel.RiskLevel)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RiskStatus.RiskStatus)
+            @Html.DisplayNameFor(model => model.Item1.RiskStatus.RiskStatus)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RiskStatus.RiskStatus)
+            @Html.DisplayFor(model => model.Item1.RiskStatus.RiskStatus)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Service.Service)
+            @Html.DisplayNameFor(model => model.Item1.Service.Service)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Service.Service)
+            @Html.DisplayFor(model => model.Item1.Service.Service)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SmartModel.ClientReferenceNumber)
+            @Html.DisplayNameFor(model => model.Item1.SmartModel.ClientReferenceNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SmartModel.ClientReferenceNumber)
+            @Html.DisplayFor(model => model.Item1.SmartModel.ClientReferenceNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StatusOfFile.StatusOfFile)
+            @Html.DisplayNameFor(model => model.Item1.StatusOfFile.StatusOfFile)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StatusOfFile.StatusOfFile)
+            @Html.DisplayFor(model => model.Item1.StatusOfFile.StatusOfFile)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VictimOfIncident.VictimOfIncident)
+            @Html.DisplayNameFor(model => model.Item1.VictimOfIncident.VictimOfIncident)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.VictimOfIncident.VictimOfIncident)
+            @Html.DisplayFor(model => model.Item1.VictimOfIncident.VictimOfIncident)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Month)
+            @Html.DisplayNameFor(model => model.Item1.Month)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Month)
+            @Html.DisplayFor(model => model.Item1.Month)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Day)
+            @Html.DisplayNameFor(model => model.Item1.Day)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Day)
+            @Html.DisplayFor(model => model.Item1.Day)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.Item1.Surname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Surname)
+            @Html.DisplayFor(model => model.Item1.Surname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Item1.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.Item1.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PoliceFileNumber)
+            @Html.DisplayNameFor(model => model.Item1.PoliceFileNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PoliceFileNumber)
+            @Html.DisplayFor(model => model.Item1.PoliceFileNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CourtFileNumber)
+            @Html.DisplayNameFor(model => model.Item1.CourtFileNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CourtFileNumber)
+            @Html.DisplayFor(model => model.Item1.CourtFileNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SWCFileNumber)
+            @Html.DisplayNameFor(model => model.Item1.SWCFileNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SWCFileNumber)
+            @Html.DisplayFor(model => model.Item1.SWCFileNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RiskAssessmentAssignedTo)
+            @Html.DisplayNameFor(model => model.Item1.RiskAssessmentAssignedTo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RiskAssessmentAssignedTo)
+            @Html.DisplayFor(model => model.Item1.RiskAssessmentAssignedTo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AbuserName)
+            @Html.DisplayNameFor(model => model.Item1.AbuserName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AbuserName)
+            @Html.DisplayFor(model => model.Item1.AbuserName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Gender)
+            @Html.DisplayNameFor(model => model.Item1.Gender)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Gender)
+            @Html.DisplayFor(model => model.Item1.Gender)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NumChildren0_6)
+            @Html.DisplayNameFor(model => model.Item1.NumChildren0_6)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NumChildren0_6)
+            @Html.DisplayFor(model => model.Item1.NumChildren0_6)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NumChildren7_12)
+            @Html.DisplayNameFor(model => model.Item1.NumChildren7_12)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NumChildren7_12)
+            @Html.DisplayFor(model => model.Item1.NumChildren7_12)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NumChildren13_18)
+            @Html.DisplayNameFor(model => model.Item1.NumChildren13_18)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NumChildren13_18)
+            @Html.DisplayFor(model => model.Item1.NumChildren13_18)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateLastTransferred)
+            @Html.DisplayNameFor(model => model.Item1.DateLastTransferred)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateLastTransferred)
+            @Html.DisplayFor(model => model.Item1.DateLastTransferred)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateClosed)
+            @Html.DisplayNameFor(model => model.Item1.DateClosed)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateClosed)
+            @Html.DisplayFor(model => model.Item1.DateClosed)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateReOpened)
+            @Html.DisplayNameFor(model => model.Item1.DateReOpened)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateReOpened)
+            @Html.DisplayFor(model => model.Item1.DateReOpened)
         </dd>
 
     </dl>
+
+    @{
+        if (ViewBag.ShowSmart)
+        {
+            <div>
+                <h4>SmartModel</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.BadDateReport.BadDateReport)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.BadDateReport.BadDateReport)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.CityOfAssault.CityOfAssault)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.CityOfAssault.CityOfAssault)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.CityOfResidence.CityOfResidence)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.CityOfResidence.CityOfResidence)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.DrugFaciliatedAssault.DrugFacilitatedAssault)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.DrugFaciliatedAssault.DrugFacilitatedAssault)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.EvidenceStored.EvidenceStored)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.EvidenceStored.EvidenceStored)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.HIVMeds.HIVMeds)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.HIVMeds.HIVMeds)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.HospitalAttended.HospitalAttended)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.HospitalAttended.HospitalAttended)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.MedicalOnly.MedicalOnly)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.MedicalOnly.MedicalOnly)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.MultiplePerpetrators.MultiplePerpetrators)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.MultiplePerpetrators.MultiplePerpetrators)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.PoliceAttendance.PolicAttendance)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.PoliceAttendance.PolicAttendance)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.PoliceReported.PolicReported)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.PoliceReported.PolicReported)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.ReferralHospital.ReferralHospital)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.ReferralHospital.ReferralHospital)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.ReferredToCBVS.ReferredCBVS)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.ReferredToCBVS.ReferredCBVS)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.SocialWorkAttendance.SocialWorkAttendance)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.SocialWorkAttendance.SocialWorkAttendance)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.ThirdPartyReport.ThirdPartyReport)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.ThirdPartyReport.ThirdPartyReport)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.VictimServices.VictimServices)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.VictimServices.VictimServices)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.WorkExploitation.SexWorkExploitation)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.WorkExploitation.SexWorkExploitation)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.AccompanimentMinutes)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.AccompanimentMinutes)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.NumberTransportsProvided)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.NumberTransportsProvided)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Item2.ReferredToNursePractitioner)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Item2.ReferredToNursePractitioner)
+                    </dd>
+
+                </dl>
+            </div>
+        }
+    }
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()

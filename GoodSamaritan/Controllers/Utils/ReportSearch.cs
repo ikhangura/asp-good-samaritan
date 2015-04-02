@@ -9,6 +9,6 @@ namespace GoodSamaritan.Controllers
     {
         public int month { get; set; }
 
-        public string year { get; set; }
+        public int year { get; set; }
     }
 }

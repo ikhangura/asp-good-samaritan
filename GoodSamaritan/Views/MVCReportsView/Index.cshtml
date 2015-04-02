@@ -8,9 +8,9 @@
 <form action="/MVCReportsView/Create" method="POST">
 
     <div class="form-group">
-        @Html.Label("Year", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Fiscal Year", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.Editor("year", new { @class = "form-control" })
+            @Html.DropDownList("year", (SelectList)ViewBag.FiscalYearId , new { @class = "form-control" })
         </div>
     </div>
 
@@ -18,6 +18,7 @@
         @Html.Label("Month", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.Editor("month", new { @class = "form-control" })
+            * Please enter a number for the Month
         </div>
     </div>
 

@@ -11,6 +11,7 @@ using GoodSamaritan.Models;
 
 namespace GoodSamaritan.Controllers
 {
+    [Authorize(Roles="Administrator, Worker")]
     public class SmartModelsController : Controller
     {
         private GoodSamaritanModel db = new GoodSamaritanModel();
@@ -166,7 +167,7 @@ namespace GoodSamaritan.Controllers
         }
 
         // GET: SmartModels/Delete/5
-        private async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -183,7 +184,7 @@ namespace GoodSamaritan.Controllers
         // POST: SmartModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        private async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
             SmartModel smartModel = await db.SmartModel.FindAsync(id);
             db.SmartModel.Remove(smartModel);

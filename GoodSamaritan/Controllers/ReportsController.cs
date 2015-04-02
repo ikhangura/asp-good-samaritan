@@ -27,7 +27,7 @@ namespace GoodSamaritan.Controllers
         // POST: api/Reports
         public IHttpActionResult PostSearch([FromBody]ReportSearch search)
         {
-            int fiscalYearId = convertYearToId(search.year);
+            int fiscalYearId = convertYearToId(search.year.ToString());
 
             var numOpen = (from openStatus in db.ClientModel
                            where openStatus.StatusOfFile.StatusOfFile == "Open"

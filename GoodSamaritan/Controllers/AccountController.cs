@@ -80,13 +80,18 @@ namespace GoodSamaritan.Controllers
 
             ApplicationUser user = userManager.FindByName(email);
 
-            bool locked = user.LockoutEnabled;
-
-            if (locked)
+            if (user != null)
             {
-                ModelState.AddModelError("", "Account Is Suspended. See Administrator For Help");
-                return View(model);
+                bool locked = user.LockoutEnabled;
+
+                if (locked)
+                {
+                    ModelState.AddModelError("", "Account Is Suspended. See Administrator For Help");
+                    return View(model);
+                }
             }
+
+            
 
 
             // This doesn't count login failures towards account lockout
