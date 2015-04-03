@@ -2,10 +2,13 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Web.Http;
+
 
 namespace GoodSamaritan.Controllers
 {
@@ -25,9 +28,25 @@ namespace GoodSamaritan.Controllers
 
         [HttpPost]
         // POST: api/Reports
-        public IHttpActionResult PostSearch([FromBody]ReportSearch search)
+        public IHttpActionResult PostSearch([FromBody] FormDataCollection form)
         {
-            int fiscalYearId = convertYearToId(search.year.ToString());
+
+            Debug.WriteLine(form.Get("year"));
+            Debug.WriteLine(form.Get("month"));
+
+            ReportSearch search = new ReportSearch()
+            {
+                year = Convert.ToInt32(form["year"]),
+                month = Convert.ToInt32(form["month"])
+            };
+
+            if (search == null)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest));
+            }
+
+            //int fiscalYearId = convertYearToId(search.year.ToString());
+            int fiscalYearId = search.year;
 
             var numOpen = (from openStatus in db.ClientModel
                            where openStatus.StatusOfFile.StatusOfFile == "Open"
