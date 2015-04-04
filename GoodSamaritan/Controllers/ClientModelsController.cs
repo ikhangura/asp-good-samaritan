@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using GoodSamaritan.Models;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace GoodSamaritan.Controllers
 {
+    [Authorize(Roles = "Administrator, Worker")]
     public class ClientModelsController : Controller
     {
         private GoodSamaritanModel db = new GoodSamaritanModel();
@@ -29,12 +31,44 @@ namespace GoodSamaritan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClientModel clientModel = db.ClientModel.Find(id);
+            var clientsModel = db.ClientModel.Include(c => c.AbuserRelationship).Include(c => c.Age).Include(c => c.AssignedWorker).Include(c => c.Crisis).Include(c => c.DuplicateFile).Include(c => c.Ethnicity).Include(c => c.FamilyViolenceFile).Include(c => c.FiscalYear).Include(c => c.Incident).Include(c => c.Program).Include(c => c.ReferralContact).Include(c => c.ReferralSource).Include(c => c.RepeatClient).Include(c => c.RiskLevel).Include(c => c.RiskStatus).Include(c => c.Service).Include(c => c.SmartModel).Include(c => c.StatusOfFile).Include(c => c.VictimOfIncident);
+            
+           ClientModel clientModel = (from aClient in clientsModel
+                                     where aClient.ClientReferenceNumber == id
+                                     select aClient).FirstOrDefault();
+            
             if (clientModel == null)
             {
                 return HttpNotFound();
             }
-            return View(clientModel);
+
+            SmartModel smartModel = null;
+            if (clientModel.ProgramId == 3)
+            {
+                var smartModels = db.SmartModel.Include(s => s.BadDateReport).Include(s => s.CityOfAssault).Include(s => s.CityOfResidence).Include(s => s.DrugFaciliatedAssault).Include(s => s.EvidenceStored).Include(s => s.HIVMeds).Include(s => s.HospitalAttended).Include(s => s.MedicalOnly).Include(s => s.MultiplePerpetrators).Include(s => s.PoliceAttendance).Include(s => s.PoliceReported).Include(s => s.ReferralHospital).Include(s => s.ReferredToCBVS).Include(s => s.SocialWorkAttendance).Include(s => s.ThirdPartyReport).Include(s => s.VictimServices).Include(s => s.WorkExploitation);
+                smartModel = (from aSmart in smartModels
+                             where aSmart.ClientReferenceNumber == id
+                             select aSmart).FirstOrDefault();
+
+                if (smartModel != null)
+                {
+                    ViewBag.ShowSmart = true;
+                }
+                else
+                {
+                    ViewBag.ShowSmart = false;
+                }
+            }
+            else
+            {
+                ViewBag.ShowSmart = false;
+                smartModel = new SmartModel();
+            }
+            
+
+            
+
+            return View(new Tuple<ClientModel,SmartModel>(clientModel, smartModel));
         }
 
         // GET: ClientModels/Create
@@ -92,7 +126,7 @@ namespace GoodSamaritan.Controllers
             return View();
         }
 
-        private int createSmartEntity(FormCollection smartData)
+        private SmartModel createSmartEntity(FormCollection smartData)
         {
             SmartModel sm = new SmartModel(){
                 WorkExploitationId = Convert.ToInt32(smartData["WorkExploitationId"]),
@@ -114,17 +148,55 @@ namespace GoodSamaritan.Controllers
                 ThirsPartyReportId = Convert.ToInt32(smartData["ThirsPartyReportId"]),
                 BadDateReportId = Convert.ToInt32(smartData["BadDateReportId"]),
                 NumberTransportsProvided = Convert.ToInt32(smartData["SmartModel.NumberTransportsProvided"]),
-                ReferredToNursePractitioner = Convert.ToBoolean(smartData["SmartModel.ReferredToNursePractitioner"])
+                ReferredToNursePractitioner = smartData["SmartModel.ReferredToNursePractitioner"].Equals("true") ? true : false
 
 
             };
 
-            db.SmartModel.Add(sm);
-            db.SaveChanges();
+            //var dump = JsonConvert.SerializeObject(sm);
+            //Debug.WriteLine(dump);
 
-            return sm.ClientReferenceNumber;
+            //db.SmartModel.Add(sm);
+            //db.SaveChanges();
+
+            //return sm.ClientReferenceNumber;
+            return sm;
 
         }
+
+        private int createDefaultSmartEntity()
+        {
+            SmartModel defaultEntity = new SmartModel()
+            {
+                WorkExploitationId = 1,
+                MultiplePErpetratorsId = 1,
+                DrugFaciliatedAssaultID = 1,
+                CityOfAssaultId = 1,
+                CityOfResidenceId = 1,
+                AccompanimentMinutes = 1,
+                ReferralHospitalId = 1,
+                HospitalAttendedId = 1,
+                SocialWorkAttendanceId = 1,
+                PoliceAttendanceID = 1,
+                VictimServicesId = 1,
+                MedicalOnlyId = 1,
+                EvidenceStoredId = 1,
+                HIVMedsId = 1,
+                ReferredToCBVSId = 1,
+                PoliceReportedId = 1,
+                ThirsPartyReportId = 1,
+                BadDateReportId = 1,
+                NumberTransportsProvided = 1,
+                ReferredToNursePractitioner = false
+            };
+
+            db.SmartModel.Add(defaultEntity);
+            db.SaveChanges();
+
+            return defaultEntity.ClientReferenceNumber;
+        }
+
+       
 
         // POST: ClientModels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -147,14 +219,20 @@ namespace GoodSamaritan.Controllers
                     Debug.WriteLine("SMART Entry Detected");
                     //db.SmartModel.Add(smartModel);
                     //db.SaveChanges();
-                    int clientRefNumber = createSmartEntity(smartFormCollection);
-                    clientModel.ClientReferenceNumber = clientRefNumber;
+                    SmartModel smart = createSmartEntity(smartFormCollection);
+                    db.SmartModel.Add(smart);
+                    db.SaveChanges();
+                    clientModel.ClientReferenceNumber = smart.ClientReferenceNumber;
 
                 }
                 else
                 {
                     //5 is the all other users smart entry - NEEDS TO BE SEEDED IN DB TO WORK
-                    clientModel.ClientReferenceNumber = 5;
+                    /*SmartModel fakeSmartModel = new SmartModel();
+                    db.SmartModel.Add(fakeSmartModel);
+                    db.SaveChanges();*/
+
+                    clientModel.ClientReferenceNumber = createDefaultSmartEntity();
                 }
 
                 Random generator = new Random();
@@ -163,6 +241,57 @@ namespace GoodSamaritan.Controllers
                 db.SaveChanges();
                 Debug.WriteLine("Valid");
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                if (clientModel.ProgramId == 3)
+                {
+                    Debug.WriteLine("Validation Failed But SMART Model Was Used. ReEstablishing Previous Settings");
+
+                    SmartModel smart = createSmartEntity(smartFormCollection);
+
+
+                    ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReportId", "BadDateReport", smart.BadDateReportId);
+                    ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssaultId", "CityOfAssault", smart.CityOfAssaultId);
+                    ViewBag.CityOfResidenceId = new SelectList(db.CityOfResidenceModel, "CityOfResidenceId", "CityOfResidence", smart.CityOfResidenceId);
+                    ViewBag.DrugFaciliatedAssaultID = new SelectList(db.DrugFacilitatedAssaultModel, "DrugFacilitatedAssaultId", "DrugFacilitatedAssault", smart.DrugFaciliatedAssaultID);
+                    ViewBag.EvidenceStoredId = new SelectList(db.EvidenceStoredModel, "EvidenceStoredId", "EvidenceStored", smart.EvidenceStoredId);
+                    ViewBag.HIVMedsId = new SelectList(db.HIVMedsModel, "HIVMedsId", "HIVMeds", smart.HIVMedsId);
+                    ViewBag.HospitalAttendedId = new SelectList(db.HospitalAttendedModel, "HospitalAttendedId", "HospitalAttended", smart.HospitalAttendedId);
+                    ViewBag.MedicalOnlyId = new SelectList(db.MedicalOnlyModel, "MedicalOnlyId", "MedicalOnly", smart.MedicalOnlyId);
+                    ViewBag.MultiplePErpetratorsId = new SelectList(db.MultiplePerpetratorsModel, "MultiplePerpetratorsID", "MultiplePerpetrators", smart.MultiplePErpetratorsId);
+                    ViewBag.PoliceAttendanceID = new SelectList(db.PoliceAttendanceModel, "PoliceAttendanceId", "PolicAttendance", smart.PoliceAttendanceID);
+                    ViewBag.PoliceReportedId = new SelectList(db.PoliceReportedModel, "PoliceReportedId", "PolicReported", smart.PoliceReportedId);
+                    ViewBag.ReferralHospitalId = new SelectList(db.ReferralHospitalModel, "ReferralHospitalID", "ReferralHospital", smart.ReferralHospitalId);
+                    ViewBag.ReferredToCBVSId = new SelectList(db.ReferredCBVSModel, "ReferralCBVSID", "ReferredCBVS", smart.ReferredToCBVSId);
+                    ViewBag.SocialWorkAttendanceId = new SelectList(db.SocialWorkAttendanceModel, "SocalWorkAttendanceId", "SocialWorkAttendance", smart.SocialWorkAttendanceId);
+                    ViewBag.ThirsPartyReportId = new SelectList(db.ThirdPartyReportModel, "ThirdPartyReportID", "ThirdPartyReport", smart.ThirsPartyReportId);
+                    ViewBag.VictimServicesId = new SelectList(db.VictimServicesModel, "VictimServicesID", "VictimServices", smart.VictimServicesId);
+                    ViewBag.WorkExploitationId = new SelectList(db.Work_ExploitationModel, "SexWorkExploitationId", "SexWorkExploitation", smart.WorkExploitationId);
+
+                    clientModel.SmartModel = smart;
+
+                }
+                else
+                {
+                    ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReportId", "BadDateReport");
+                    ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssaultId", "CityOfAssault");
+                    ViewBag.CityOfResidenceId = new SelectList(db.CityOfResidenceModel, "CityOfResidenceId", "CityOfResidence");
+                    ViewBag.DrugFaciliatedAssaultID = new SelectList(db.DrugFacilitatedAssaultModel, "DrugFacilitatedAssaultId", "DrugFacilitatedAssault");
+                    ViewBag.EvidenceStoredId = new SelectList(db.EvidenceStoredModel, "EvidenceStoredId", "EvidenceStored");
+                    ViewBag.HIVMedsId = new SelectList(db.HIVMedsModel, "HIVMedsId", "HIVMeds");
+                    ViewBag.HospitalAttendedId = new SelectList(db.HospitalAttendedModel, "HospitalAttendedId", "HospitalAttended");
+                    ViewBag.MedicalOnlyId = new SelectList(db.MedicalOnlyModel, "MedicalOnlyId", "MedicalOnly");
+                    ViewBag.MultiplePErpetratorsId = new SelectList(db.MultiplePerpetratorsModel, "MultiplePerpetratorsID", "MultiplePerpetrators");
+                    ViewBag.PoliceAttendanceID = new SelectList(db.PoliceAttendanceModel, "PoliceAttendanceId", "PolicAttendance");
+                    ViewBag.PoliceReportedId = new SelectList(db.PoliceReportedModel, "PoliceReportedId", "PolicReported");
+                    ViewBag.ReferralHospitalId = new SelectList(db.ReferralHospitalModel, "ReferralHospitalID", "ReferralHospital");
+                    ViewBag.ReferredToCBVSId = new SelectList(db.ReferredCBVSModel, "ReferralCBVSID", "ReferredCBVS");
+                    ViewBag.SocialWorkAttendanceId = new SelectList(db.SocialWorkAttendanceModel, "SocalWorkAttendanceId", "SocialWorkAttendance");
+                    ViewBag.ThirsPartyReportId = new SelectList(db.ThirdPartyReportModel, "ThirdPartyReportID", "ThirdPartyReport");
+                    ViewBag.VictimServicesId = new SelectList(db.VictimServicesModel, "VictimServicesID", "VictimServices");
+                    ViewBag.WorkExploitationId = new SelectList(db.Work_ExploitationModel, "SexWorkExploitationId", "SexWorkExploitation");
+                }
             }
 
             /**ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReport", "BadDateReport");
@@ -183,23 +312,7 @@ namespace GoodSamaritan.Controllers
             ViewBag.VictimServicesId = new SelectList(db.VictimServicesModel, "VictimServices", "VictimServices");
             ViewBag.WorkExploitationId = new SelectList(db.Work_ExploitationModel, "SexWorkExploitationId", "SexWorkExploitation");**/
 
-            ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReportId", "BadDateReport");
-            ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssaultId", "CityOfAssault");
-            ViewBag.CityOfResidenceId = new SelectList(db.CityOfResidenceModel, "CityOfResidenceId", "CityOfResidence");
-            ViewBag.DrugFaciliatedAssaultID = new SelectList(db.DrugFacilitatedAssaultModel, "DrugFacilitatedAssaultId", "DrugFacilitatedAssault");
-            ViewBag.EvidenceStoredId = new SelectList(db.EvidenceStoredModel, "EvidenceStoredId", "EvidenceStored");
-            ViewBag.HIVMedsId = new SelectList(db.HIVMedsModel, "HIVMedsId", "HIVMeds");
-            ViewBag.HospitalAttendedId = new SelectList(db.HospitalAttendedModel, "HospitalAttendedId", "HospitalAttended");
-            ViewBag.MedicalOnlyId = new SelectList(db.MedicalOnlyModel, "MedicalOnlyId", "MedicalOnly");
-            ViewBag.MultiplePErpetratorsId = new SelectList(db.MultiplePerpetratorsModel, "MultiplePerpetratorsID", "MultiplePerpetrators");
-            ViewBag.PoliceAttendanceID = new SelectList(db.PoliceAttendanceModel, "PoliceAttendanceId", "PolicAttendance");
-            ViewBag.PoliceReportedId = new SelectList(db.PoliceReportedModel, "PoliceReportedId", "PolicReported");
-            ViewBag.ReferralHospitalId = new SelectList(db.ReferralHospitalModel, "ReferralHospitalID", "ReferralHospital");
-            ViewBag.ReferredToCBVSId = new SelectList(db.ReferredCBVSModel, "ReferralCBVSID", "ReferredCBVS");
-            ViewBag.SocialWorkAttendanceId = new SelectList(db.SocialWorkAttendanceModel, "SocalWorkAttendanceId", "SocialWorkAttendance");
-            ViewBag.ThirsPartyReportId = new SelectList(db.ThirdPartyReportModel, "ThirdPartyReportID", "ThirdPartyReport");
-            ViewBag.VictimServicesId = new SelectList(db.VictimServicesModel, "VictimServicesID", "VictimServices");
-            ViewBag.WorkExploitationId = new SelectList(db.Work_ExploitationModel, "SexWorkExploitationId", "SexWorkExploitation");
+            
 
             ViewBag.AbuserRelationshipId = new SelectList(db.AbuserRelationshipModel, "AbuserRelationShipId", "AbuserRelationship", clientModel.AbuserRelationshipId);
             ViewBag.AgeId = new SelectList(db.AgeModel, "AgeId", "Age", clientModel.AgeId);
@@ -235,6 +348,18 @@ namespace GoodSamaritan.Controllers
             {
                 return HttpNotFound();
             }
+
+            SmartModel smartModel = db.SmartModel.Find(id);
+            if (smartModel != null && clientModel.ProgramId == 3)
+            {
+                ViewBag.Announce = true;
+                ViewBag.ClientId = id;
+            }
+            else
+            {
+                ViewBag.Announce = false;
+            }
+   
             ViewBag.AbuserRelationshipId = new SelectList(db.AbuserRelationshipModel, "AbuserRelationShipId", "AbuserRelationship", clientModel.AbuserRelationshipId);
             ViewBag.AgeId = new SelectList(db.AgeModel, "AgeId", "Age", clientModel.AgeId);
             ViewBag.AssignedWorkerId = new SelectList(db.AssignedWorkerModel, "AssignedWorkerId", "AssignedWorker", clientModel.AssignedWorkerId);
@@ -262,14 +387,24 @@ namespace GoodSamaritan.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientReferenceNumber,FiscalYearId,Month,Day,Surname,FirstName,PoliceFileNumber,CourtFileNumber,SWCFileNumber,RiskLevelId,CrisisId,ServiceId,ProgramId,RiskAssessmentAssignedTo,RiskStatusId,AssignedWorkerId,ReferralSourceId,ReferralContactId,IncidentId,AbuserName,AbuserRelationshipId,VictimOfIncidentId,FamilyViolenceId,Gender,EthnicityId,AgeId,RepeatClientId,DuplicateFileId,NumChildren0_6,NumChildren7_12,NumChildren13_18,StatusOfFileId,DateLastTransferred,DateClosed,DateReOpened")] ClientModel clientModel)
+        public ActionResult Edit([Bind(Include = "ClientReferenceNumber,FiscalYearId,Month,Day,Surname,FirstName,PoliceFileNumber,CourtFileNumber,SWCFileNumber,RiskLevelId,CrisisId,ServiceId,ProgramId,RiskAssessmentAssignedTo,RiskStatusId,AssignedWorkerId,ReferralSourceId,ReferralContactId,IncidentId,AbuserName,AbuserRelationshipId,VictimOfIncidentId,FamilyViolenceId,Gender,EthnicityId,AgeId,RepeatClientId,DuplicateFileId,NumChildren0_6,NumChildren7_12,NumChildren13_18,StatusOfFileId,DateLastTransferred,DateClosed,DateReOpened")] ClientModel clientModel, FormCollection smartFormCollection)
         {
+
             if (ModelState.IsValid)
             {
+
                 db.Entry(clientModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+
+            if (clientModel.ProgramId == 3)
+            {
+                ViewBag.Announce = true;
+                ViewBag.ClientId = clientModel.ClientReferenceNumber;
+            }
+
             ViewBag.AbuserRelationshipId = new SelectList(db.AbuserRelationshipModel, "AbuserRelationShipId", "AbuserRelationship", clientModel.AbuserRelationshipId);
             ViewBag.AgeId = new SelectList(db.AgeModel, "AgeId", "Age", clientModel.AgeId);
             ViewBag.AssignedWorkerId = new SelectList(db.AssignedWorkerModel, "AssignedWorkerId", "AssignedWorker", clientModel.AssignedWorkerId);
@@ -299,12 +434,47 @@ namespace GoodSamaritan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClientModel clientModel = db.ClientModel.Find(id);
+            //ClientModel clientModel = db.ClientModel.Find(id);
+
+            var clientsModel = db.ClientModel.Include(c => c.AbuserRelationship).Include(c => c.Age).Include(c => c.AssignedWorker).Include(c => c.Crisis).Include(c => c.DuplicateFile).Include(c => c.Ethnicity).Include(c => c.FamilyViolenceFile).Include(c => c.FiscalYear).Include(c => c.Incident).Include(c => c.Program).Include(c => c.ReferralContact).Include(c => c.ReferralSource).Include(c => c.RepeatClient).Include(c => c.RiskLevel).Include(c => c.RiskStatus).Include(c => c.Service).Include(c => c.SmartModel).Include(c => c.StatusOfFile).Include(c => c.VictimOfIncident);
+
+            ClientModel clientModel = (from aClient in clientsModel
+                                       where aClient.ClientReferenceNumber == id
+                                       select aClient).FirstOrDefault();
+
+            SmartModel smartModel = null;
             if (clientModel == null)
             {
                 return HttpNotFound();
             }
-            return View(clientModel);
+            else
+            {
+                //if client is in the smart program, add it to the page aswell
+                
+                if (clientModel.ProgramId == 3)
+                {
+                    var smartModels = db.SmartModel.Include(s => s.BadDateReport).Include(s => s.CityOfAssault).Include(s => s.CityOfResidence).Include(s => s.DrugFaciliatedAssault).Include(s => s.EvidenceStored).Include(s => s.HIVMeds).Include(s => s.HospitalAttended).Include(s => s.MedicalOnly).Include(s => s.MultiplePerpetrators).Include(s => s.PoliceAttendance).Include(s => s.PoliceReported).Include(s => s.ReferralHospital).Include(s => s.ReferredToCBVS).Include(s => s.SocialWorkAttendance).Include(s => s.ThirdPartyReport).Include(s => s.VictimServices).Include(s => s.WorkExploitation);
+                    smartModel = (from aSmart in smartModels
+                                  where aSmart.ClientReferenceNumber == id
+                                  select aSmart).FirstOrDefault();
+
+                    if (smartModel != null)
+                    {
+                        ViewBag.ShowSmart = true;
+                    }
+                    else
+                    {
+                        ViewBag.ShowSmart = false;
+                    }
+                }
+                else
+                {
+                    ViewBag.ShowSmart = false;
+                    smartModel = new SmartModel();
+                }
+            }
+
+            return View(new Tuple<ClientModel, SmartModel>(clientModel, smartModel));
         }
 
         // POST: ClientModels/Delete/5
@@ -313,8 +483,21 @@ namespace GoodSamaritan.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ClientModel clientModel = db.ClientModel.Find(id);
-            db.ClientModel.Remove(clientModel);
-            db.SaveChanges();
+
+            if (clientModel != null && clientModel.ProgramId == 3)
+            {
+                SmartModel smartModel = db.SmartModel.Find(id);
+                db.ClientModel.Remove(clientModel);
+                db.SaveChanges();
+                db.SmartModel.Remove(smartModel);
+                db.SaveChanges();
+            }
+            else
+            {
+                db.ClientModel.Remove(clientModel);
+                db.SaveChanges();
+            }
+            
             return RedirectToAction("Index");
         }
 

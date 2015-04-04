@@ -11,6 +11,7 @@ using GoodSamaritan.Models;
 
 namespace GoodSamaritan.Controllers
 {
+    [Authorize(Roles="Administrator, Worker")]
     public class SmartModelsController : Controller
     {
         private GoodSamaritanModel db = new GoodSamaritanModel();
@@ -38,7 +39,7 @@ namespace GoodSamaritan.Controllers
         }
 
         // GET: SmartModels/Create
-        public ActionResult Create()
+        private ActionResult Create()
         {
             ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReport", "BadDateReport");
             ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssault", "CityOfAssault");
@@ -65,7 +66,7 @@ namespace GoodSamaritan.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ClientReferenceNumber,WorkExploitationId,MultiplePErpetratorsId,DrugFaciliatedAssaultID,CityOfAssaultId,CityOfResidenceId,AccompanimentMinutes,ReferralHospitalId,HospitalAttendedId,SocialWorkAttendanceId,PoliceAttendanceID,VictimServicesId,MedicalOnlyId,EvidenceStoredId,HIVMedsId,ReferredToCBVSId,PoliceReportedId,ThirsPartyReportId,BadDateReportId,NumberTransportsProvided,ReferredToNursePractitioner")] SmartModel smartModel)
+        private async Task<ActionResult> Create([Bind(Include = "ClientReferenceNumber,WorkExploitationId,MultiplePErpetratorsId,DrugFaciliatedAssaultID,CityOfAssaultId,CityOfResidenceId,AccompanimentMinutes,ReferralHospitalId,HospitalAttendedId,SocialWorkAttendanceId,PoliceAttendanceID,VictimServicesId,MedicalOnlyId,EvidenceStoredId,HIVMedsId,ReferredToCBVSId,PoliceReportedId,ThirsPartyReportId,BadDateReportId,NumberTransportsProvided,ReferredToNursePractitioner")] SmartModel smartModel)
         {
             if (ModelState.IsValid)
             {
@@ -106,6 +107,9 @@ namespace GoodSamaritan.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ClientId = id;
+
             ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReportId", "BadDateReport", smartModel.BadDateReportId);
             ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssaultId", "CityOfAssault", smartModel.CityOfAssaultId);
             ViewBag.CityOfResidenceId = new SelectList(db.CityOfResidenceModel, "CityOfResidenceId", "CityOfResidence", smartModel.CityOfResidenceId);
@@ -139,6 +143,9 @@ namespace GoodSamaritan.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.ClientId = smartModel.ClientReferenceNumber;
+
+
             ViewBag.BadDateReportId = new SelectList(db.BadDateReportModel, "BadDateReportId", "BadDateReport", smartModel.BadDateReportId);
             ViewBag.CityOfAssaultId = new SelectList(db.CityOfAssaultModel, "CityOfAssaultId", "CityOfAssault", smartModel.CityOfAssaultId);
             ViewBag.CityOfResidenceId = new SelectList(db.CityOfResidenceModel, "CityOfResidenceId", "CityOfResidence", smartModel.CityOfResidenceId);

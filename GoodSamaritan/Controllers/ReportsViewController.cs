@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace GoodSamaritan.Controllers
 {
-    [Authorize(Roles="Administrator, Worker")]
+    [Authorize(Roles = "Administrator, Worker, Reporter")]
     public class ReportsViewController : Controller
     {
         // GET: ReportsView -- FOR ANGULAR

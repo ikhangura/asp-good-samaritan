@@ -82,7 +82,7 @@ var config = {headers:  {
     }
 };
 
-$http.post("http://w11a.thunderchicken.ca/Token", config); //an example call using the set headers
+$http.post("http://a3.thunderchicken.ca/Token", config); //an example call using the set headers
 ````
 These headers may by default be added by angular, but I had to add them in postman for anything to work
 
@@ -90,7 +90,7 @@ If the call is successful you will get a json object back containing an attribut
 ````javascript
 var accessToken;
 
-$http.post("http://w11a.thunderchicken.ca/Token", config).then(onSuccess, onError);
+$http.post("http://a3.thunderchicken.ca/Token", config).then(onSuccess, onError);
 
 var onSuccess = function(response){
   accessToken = response.access_token;
@@ -111,7 +111,7 @@ var config = {headers:  {
     }
 };
 
-$http.post("http://w11a.thunderchicken.ca/api/Reports", config) //an example call using the set headers
+$http.post("http://a3.thunderchicken.ca/api/Reports", config) //an example call using the set headers
 ````
 If your call is successful and the user token is valid, you will get the response stated earlier form the API for the route
 

@@ -14,14 +14,14 @@
     <div class="form-horizontal">
         <h4>ClientModel</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.ClientReferenceNumber, "Client Reference Number", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ClientReferenceNumber", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ClientReferenceNumber, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.FiscalYearId, "Fiscal Year", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -466,6 +466,6 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@Scripts.Render("~/Scripts/jquery-1.10.2.js")
+@Scripts.Render("~/Scripts/jquery-2.1.3.js")
 @Scripts.Render("~/Scripts/scripts.js")
 @Scripts.Render("~/Scripts/myValidation.js")

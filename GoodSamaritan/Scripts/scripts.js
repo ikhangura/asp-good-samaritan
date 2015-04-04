@@ -4,7 +4,7 @@ var smartFormAdded = false;
 
 $(document).ready(function () {
 
-    alert(document.getElementById("ProgramId").value);
+    //alert(document.getElementById("ProgramId").value);
 
     if (document.getElementById("ProgramId").value == 3) {
         addSmartForm();
@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     $("#ProgramId").change(function() {
         if (this.value == 3) {
-            alert("SMART OPTION SELECTED");
+            //alert("SMART OPTION SELECTED");
             addSmartForm();
         } else {
             if (smartFormAdded) {
@@ -45,7 +45,7 @@ function checkIfSmartSelected() {
 
 function validateExtras() {
     var status = true;
-    alert("HERE");
+    //alert("HERE");
 
     //if smart is not loaded then don't validate it
     if (document.getElementById("ProgramId").value != 3) {
@@ -55,41 +55,30 @@ function validateExtras() {
 
     var accompMin = document.getElementById("SmartModel_AccompanimentMinutes").value;
     var transNum = document.getElementById("SmartModel_NumberTransportsProvided").value;
-    alert(accompMin);
+    //alert(accompMin);
     if (accompMin.match(/^[0-9]+$/) == null) {
-        alert("accompMin: failure");
+        //alert("accompMin: failure");
         document.getElementById("accompaniment_minutes_error").innerHTML = "The Required Field Must Be A Number";
         status = false;
     } else {
-        alert("accompMin: passed");
+        //alert("accompMin: passed");
+        document.getElementById("accompaniment_minutes_error").innerHTML = "";
     }
 
     if (transNum.match(/^[0-9]+$/) == null) {
-        alert("transNum: failure");
+        //alert("transNum: failure");
         document.getElementById("transNum_error").innerHTML = "The Required Field Must Be A Number";
         status = false;
     } else {
-        alert("transNum: passed");
+        //alert("transNum: passed");
+        document.getElementById("transNum_error").innerHTML = "";
     }
 
     return status;
 }
 
 function addSmartForm() {
-    /*$.ajax({
-        url: "/SmartModels/Create",
-        type: "GET",
-        success: function (response) {
-            //alert(response);
-            //$("#formShell").html += response;
-            document.getElementById("smart-form-placeholder").innerHTML += response;
-            smartFormAdded = true;
-        },
-        error: function (response) {
-            alert("There Was An Error Fetching the Smart Portion Of The Form\n\n" + response);
-        }
-    });
-    return false;*/
+
     smartFormAdded = true;
     document.getElementById("smart-entity-placeholder").style.display = "inline";
 }
@@ -97,12 +86,13 @@ function addSmartForm() {
 function removeSmartForm() {
     //document.getElementById("smart-form-placeholder").innerHTML = "";
     document.getElementById("smart-entity-placeholder").style.display = "none";
+    smartFormAdded = false;
 }
 
 
 
 /* Beginning of Angular */
-
+/*
 (function () {
 
     angular.module("createUserViewer", []).
@@ -128,4 +118,4 @@ function removeSmartForm() {
 
     }
 }());
-
+*/
